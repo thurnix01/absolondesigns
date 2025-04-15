@@ -1,36 +1,77 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio Redesign
+
+A modern, responsive portfolio website built with Next.js, Tailwind CSS, and TypeScript.
+
+## Features
+
+- Responsive design that works on all devices
+- Dark/light mode toggle with theme persistence
+- Animated sections on scroll
+- Contact form
+- Project showcase
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
+- Node.js (v18 or higher recommended)
+- npm or yarn
+
+### Installation
+
+1. Clone the repository:
+```bash
+git clone https://github.com/your-username/portfolio-redesign.git
+cd portfolio-redesign
+```
+
+2. Install dependencies:
+```bash
+npm install
+# or
+yarn install
+```
+
+3. Run the development server:
 ```bash
 npm run dev
 # or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Deployment to GitHub Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+This project is configured for easy deployment to GitHub Pages.
 
-## Learn More
+### Automatic Deployment (GitHub Actions)
 
-To learn more about Next.js, take a look at the following resources:
+1. Push your changes to the main branch
+2. GitHub Actions will automatically build and deploy the site
+3. Your site will be available at `https://your-username.github.io/portfolio-redesign`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Manual Deployment
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+If you prefer to deploy manually:
 
-## Deploy on Vercel
+1. Build the project:
+```bash
+npm run build
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Deploy to GitHub Pages:
+```bash
+npm run deploy
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Customization
+
+- Update `portfolio-redesign/src/app/page.tsx` with your own content
+- Replace images in the `public` directory with your own
+- Modify colors and styling in `portfolio-redesign/src/app/globals.css`
+- Configure site metadata in `portfolio-redesign/src/app/layout.tsx`
+
+## License
+
+This project is open source and available under the [MIT License](LICENSE).

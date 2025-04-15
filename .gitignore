@@ -15,7 +15,8 @@
 
 # next.js
 /.next/
-/out/
+# Remove /out/ from gitignore since we need it for GitHub Pages
+# /out/
 
 # production
 /build
