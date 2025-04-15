@@ -88,7 +88,7 @@ export default function Home() {
               <h2 className="text-3xl font-bold mb-8 text-center">About me</h2>
               <div className="max-w-3xl mx-auto bg-[var(--card-bg)] p-8 rounded-lg shadow-md border border-[var(--card-border)]">
                 <p className="text-lg leading-relaxed text-[var(--text-primary)]">
-                  I'm always looking for ways to grow—both professionally and personally. My goal is to find opportunities that push my design skills further while letting me thrive in a creative, dynamic environment. With a strong background in web development, production design, animation, I bring a mix of strategy, hands-on expertise, and a passion for making things that truly connect with people. Add in my ability to collaborate and communicate effectively, and I'm confident in my ability to make an impact wherever I go.
+                  I&apos;m always looking for ways to grow—both professionally and personally. My goal is to find opportunities that push my design skills further while letting me thrive in a creative, dynamic environment. With a strong background in web development, production design, animation, I bring a mix of strategy, hands-on expertise, and a passion for making things that truly connect with people. Add in my ability to collaborate and communicate effectively, and I&apos;m confident in my ability to make an impact wherever I go.
                 </p>
               </div>
             </AnimatedSection>
