@@ -45,7 +45,7 @@ export default function Home() {
               <div className="flex flex-col md:flex-row gap-10 items-center md:items-start">
                 <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-[var(--card-border)] shadow-lg">
                   <Image
-                    src="/profile-placeholder.jpg"
+                    src="/profile.png"
                     alt="Profile Picture"
                     fill
                     unoptimized
