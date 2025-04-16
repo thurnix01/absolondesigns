@@ -44,6 +44,8 @@ export default function AnimatedSection({
       observer.observe(currentRef);
       // Initially hide the element
       currentRef.style.opacity = '0';
+      // Add transform property for smoother animation
+      currentRef.style.transform = 'translateY(20px)';
     }
 
     return () => {
@@ -56,7 +58,7 @@ export default function AnimatedSection({
   return (
     <div
       ref={sectionRef}
-      className={`transition-all duration-700 ${className}`}
+      className={`transition-all duration-1000 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] ${className}`}
     >
       {children}
     </div>
