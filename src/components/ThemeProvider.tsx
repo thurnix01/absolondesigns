@@ -13,11 +13,9 @@ const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
   const [theme, setTheme] = useState<Theme>('light');
-  const [mounted, setMounted] = useState(false);
 
   // This effect runs only on the client after hydration
   useEffect(() => {
-    setMounted(true);
     // Remove any server-side injected dark class to prevent hydration mismatch
     document.documentElement.classList.remove('dark');
     
