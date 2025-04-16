@@ -107,7 +107,7 @@ export default function Home() {
               <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
                 <div className="relative h-60 overflow-hidden">
                   <Image
-                    src="/preview_01.jpg"
+                    src="preview_01.jpg"
                     alt="Performance Bicycle Email Builder"
                     fill
                     unoptimized
@@ -130,7 +130,7 @@ export default function Home() {
               <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
                 <div className="relative h-60 overflow-hidden">
                   <Image
-                    src="/preview_02.jpg"
+                    src="preview_02.jpg"
                     alt="Modal Card"
                     fill
                     unoptimized
@@ -153,7 +153,7 @@ export default function Home() {
               <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
                 <div className="relative h-60 overflow-hidden">
                   <Image
-                    src="/preview_03.jpg"
+                    src="preview_03.jpg"
                     alt="Social Media"
                     fill
                     unoptimized
