@@ -19,7 +19,7 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <div className="h-10 relative">
               <Image
-                src="absolon_designs_logo_blk_edit.gif"
+                src="https://thurnix01.github.io/absolondesigns/absolon_designs_logo_blk_edit.gif"
                 alt="Absolon Designs Logo"
                 width={70}
                 height={70}
