@@ -75,7 +75,7 @@ export default function Home() {
                 </div>
                 <div className="text-center md:text-left">
                   <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-[var(--accent)]">
-                    Terence Absolon Graphic Designer / Front-End Developer
+                    Graphic Designer / Front-End Developer
                   </h1>
                   <p className="text-lg md:text-xl text-[var(--text-secondary)] mb-6">
                     Victoria, British Columbia, Canada
