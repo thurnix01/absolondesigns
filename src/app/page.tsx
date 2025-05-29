@@ -226,7 +226,7 @@ export default function Home() {
                         type="email" 
                         id="email" 
                         className="w-full px-4 py-2 border border-[var(--input-border)] rounded-md focus:outline-none focus:ring-2 focus:ring-[var(--primary)] bg-[var(--input-bg)] transition-all duration-300 ease-in-out" 
-                        placeholder="absolondesigns@gmail.com"
+                        placeholder="your.email@example.com"
                       />
                     </div>
                   </div>
