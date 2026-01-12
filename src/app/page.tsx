@@ -19,7 +19,7 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <div className="h-10 relative">
               <Image
-                src="/absolon_designs_logo_blk_edit.gif"
+                src="absolon_designs_logo_blk_edit.gif"
                 alt="Absolon Designs Logo"
                 width={70}
                 height={70}
@@ -33,7 +33,7 @@ export default function Home() {
             <Link href="#home" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Home</Link>
             <Link href="#about" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">About</Link>
             <Link href="#projects" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Projects</Link>
-            <Link href="#contact" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Contact</Link>
+            <Link href="mailto:absolondesigns@gmail.com" target="_blank" rel="noopener noreferrer" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Contact</Link>
           </nav>
           
           <div className="flex items-center gap-2">
@@ -81,13 +81,13 @@ export default function Home() {
                     Victoria, British Columbia, Canada
                   </p>
                   <div className="flex gap-4 justify-center md:justify-start">
-                    <a href="mailto:contact@example.com" className="px-4 py-2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white rounded-md flex items-center gap-2 transition-all duration-300 ease-in-out hover:shadow-lg">
+                    <a href="mailto:absolondesigns@gmail.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white rounded-md flex items-center gap-2 transition-all duration-300 ease-in-out hover:shadow-lg">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                       </svg>
                       Email Me
                     </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 border border-[var(--card-border)] hover:bg-[var(--input-bg)] rounded-md flex items-center gap-2 hover:shadow-md">
+                    <a href="https://www.linkedin.com/in/terence-absolon/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 border border-[var(--card-border)] hover:bg-[var(--input-bg)] rounded-md flex items-center gap-2 hover:shadow-md">
                       <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5">
                         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                       </svg>
@@ -123,10 +123,12 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Project 1 */}
             <AnimatedSection delay={100} className="h-full">
+            <Link href="https://thurnix01.github.io/page_info_template_builder/"
+              className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
               <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
                 <div className="relative h-60 overflow-hidden">
                   <Image
-                    src="preview_01.jpg"
+                    src="preview_04.jpg"
                     alt="Performance Bicycle Email Builder"
                     fill
                     unoptimized
@@ -135,22 +137,25 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-6 flex flex-col h-[calc(100%-15rem)]">
-                  <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">Performance Bicycle Email Builder</h3>
+                  <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">Performance Bicycle Page Builder Template</h3>
                   <p className="text-[var(--text-secondary)] mb-4 flex-grow">
-                    Creating this form, I focused on streamlining the process from the mockup stage of Performance Bicycle newsletter in Figma, to live text in the form of HTML.
+                    Creating this form, I focused on streamlining the process from the mockup stage of Performance Bicycle blog page in Figma, to live text in the form of HTML.
                   </p>
                   <p className="text-sm text-[var(--text-muted)] italic">HTML, Javascript, Figma</p>
                 </div>
-              </div>
+              </div>  
+              </Link>
             </AnimatedSection>
 
             {/* Project 2 */}
             <AnimatedSection delay={200} className="h-full">
+            <Link href="https://www.performancebike.com/how-to-crush-your-first-gravel-race/cp1744"
+              className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
               <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
                 <div className="relative h-60 overflow-hidden">
                   <Image
-                    src="preview_02.jpg"
-                    alt="Modal Card"
+                    src="preview_05.jpg"
+                    alt="Responsive Page Design"
                     fill
                     unoptimized
                     style={{objectFit: "cover"}}
@@ -158,21 +163,24 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-6 flex flex-col h-[calc(100%-15rem)]">
-                  <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">Modal Card</h3>
+                  <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">Responsive Page Design</h3>
                   <p className="text-[var(--text-secondary)] mb-4 flex-grow">
-                    Created a modal card using a border radius manipulation for a curving effect.
+                    Designed a responsive page layout using HTML and CSS, for a client's website focusing on responsive navigation and layout.
                   </p>
-                  <p className="text-sm text-[var(--text-muted)] italic">HTML, CSS</p>
+                  <p className="text-sm text-[var(--text-muted)] italic">HTML, CSS, Javascript, Figma</p>
                 </div>
               </div>
+              </Link>
             </AnimatedSection>
 
             {/* Project 3 */}
             <AnimatedSection delay={300} className="h-full">
+            <Link href="https://www.behance.net/gallery/79189727/Washburn-Instagram-Ad"
+              className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
               <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
                 <div className="relative h-60 overflow-hidden">
                   <Image
-                    src="preview_03.jpg"
+                    src="preview_06.gif"
                     alt="Social Media"
                     fill
                     unoptimized
@@ -183,24 +191,26 @@ export default function Home() {
                 <div className="p-6 flex flex-col h-[calc(100%-15rem)]">
                   <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">Social Media</h3>
                   <p className="text-[var(--text-secondary)] mb-4 flex-grow">
-                    Showcasing a blend of instagram ads promoting various bmx and performance cycling brands.
+                  In this three-piece Instagram advert, I wanted to express what the product means to me with original photography, bright and vibrant color treatments, fresh typography and a cool animation.
                   </p>
                   <p className="text-sm text-[var(--text-muted)] italic">HTML, Figma, Photoshop</p>
                 </div>
               </div>
+              </Link>
             </AnimatedSection>
           </div>
           
           <AnimatedSection delay={400}>
             <div className="text-center mt-12">
-              <a href="#" className="inline-block px-6 py-3 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white rounded-md transition-all duration-300 ease-in-out hover:shadow-lg transform hover:scale-105">
-                View all projects
+              <a href="https://www.behance.net/absolondesigns" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white rounded-md transition-all duration-300 ease-in-out hover:shadow-lg transform hover:scale-105">
+                View more projects
               </a>
             </div>
           </AnimatedSection>
         </section>
 
         {/* Contact Section */}
+        {/*
         <section id="contact" className="py-20 bg-[var(--section-bg)]">
           <div className="container mx-auto px-4">
             <AnimatedSection>
@@ -258,7 +268,7 @@ export default function Home() {
               </div>
             </AnimatedSection>
           </div>
-        </section>
+        </section>*/}
       </main>
 
       {/* Footer */}
