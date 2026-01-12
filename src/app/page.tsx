@@ -165,7 +165,7 @@ export default function Home() {
                 <div className="p-6 flex flex-col h-[calc(100%-15rem)]">
                   <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">Responsive Page Design</h3>
                   <p className="text-[var(--text-secondary)] mb-4 flex-grow">
-                    Designed a responsive page layout using HTML and CSS, for a client's website focusing on responsive navigation and layout.
+                    Designed a responsive page layout using HTML and CSS, for a client&apos;s website focusing on responsive navigation and layout.
                   </p>
                   <p className="text-sm text-[var(--text-muted)] italic">HTML, CSS, Javascript, Figma</p>
                 </div>
