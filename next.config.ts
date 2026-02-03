@@ -3,7 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   output: 'export',
   // Update repository name to 'absolondesigns'
-  basePath: process.env.NODE_ENV === 'production' ? '/absolondesigns' : '',
+  basePath: process.env.NODE_ENV === 'production' ? '/' : '',
   images: {
     remotePatterns: [
       {
