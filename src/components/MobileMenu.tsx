@@ -53,17 +53,18 @@ export default function MobileMenu() {
     <>
       <button 
         id="menu-toggle"
-        className="md:hidden p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-300 ease-in-out transform hover:scale-105"
+        className="md:hidden p-2 rounded-md hover:bg-[var(--input-bg)] transition-all duration-300 ease-in-out"
         onClick={toggleMenu}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
+        aria-label={isOpen ? 'Close menu' : 'Open menu'}
       >
         {isOpen ? (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 transition-transform duration-300 ease-in-out">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-[var(--text-primary)] transition-transform duration-300 ease-in-out">
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6 transition-transform duration-300 ease-in-out">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-[var(--text-primary)] transition-transform duration-300 ease-in-out">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
           </svg>
         )}
@@ -72,41 +73,72 @@ export default function MobileMenu() {
       {/* Mobile Menu Overlay */}
       <div 
         id="mobile-menu"
-        className={`fixed inset-0 z-50 md:hidden bg-white dark:bg-gray-900 transition-all duration-500 ease-in-out ${
+        className={`fixed inset-0 z-50 md:hidden transition-all duration-300 ease-in-out ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
+        style={{
+          backgroundColor: '#0f182aed',
+        }}
       >
-        <div className={`flex flex-col items-center justify-center h-full text-center space-y-8 transition-all duration-700 ease-in-out ${
-          isOpen ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'
+        {/* Backdrop */}
+        <div 
+          className="absolute inset-0 backdrop-blur-sm"
+          style={{
+            backgroundColor: '#0f182aed',
+          }}
+          onClick={closeMenu}
+        />
+        
+        {/* Menu Content */}
+        <div className={`relative z-10 flex flex-col h-full transition-all duration-500 ease-in-out ${
+          isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
-          <Link 
-            href="#home" 
-            className="text-2xl font-medium hover:text-blue-500 transition-all duration-300 ease-in-out transform hover:scale-105"
-            onClick={closeMenu}
-          >
-            Home
-          </Link>
-          <Link 
-            href="#about" 
-            className="text-2xl font-medium hover:text-blue-500 transition-all duration-300 ease-in-out transform hover:scale-105"
-            onClick={closeMenu}
-          >
-            About
-          </Link>
-          <Link 
-            href="#projects" 
-            className="text-2xl font-medium hover:text-blue-500 transition-all duration-300 ease-in-out transform hover:scale-105"
-            onClick={closeMenu}
-          >
-            Projects
-          </Link>
-          <Link 
-            href="#contact" 
-            className="text-2xl font-medium hover:text-blue-500 transition-all duration-300 ease-in-out transform hover:scale-105"
-            onClick={closeMenu}
-          >
-            Contact
-          </Link>
+          {/* Close Button */}
+          <div className="flex justify-end p-4">
+            <button
+              onClick={closeMenu}
+              className="p-2 rounded-md hover:bg-[var(--input-bg)] transition-all duration-300 ease-in-out"
+              aria-label="Close menu"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-[var(--text-primary)]">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+          </div>
+
+          {/* Navigation Links */}
+          <nav className="flex-1 flex flex-col items-center justify-center px-4 space-y-6">
+            <Link 
+              href="#home" 
+              className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
+              onClick={closeMenu}
+            >
+              Home
+            </Link>
+            <Link 
+              href="#about" 
+              className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
+              onClick={closeMenu}
+            >
+              About
+            </Link>
+            <Link 
+              href="#projects" 
+              className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
+              onClick={closeMenu}
+            >
+              Projects
+            </Link>
+            <Link 
+              href="https://thurnix01.github.io/absolondesigns_old/pages/resume.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
+              onClick={closeMenu}
+            >
+              Resume
+            </Link>
+          </nav>
         </div>
       </div>
     </>

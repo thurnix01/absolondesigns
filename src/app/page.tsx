@@ -33,7 +33,7 @@ export default function Home() {
             <Link href="#home" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Home</Link>
             <Link href="#about" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">About</Link>
             <Link href="#projects" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Projects</Link>
-            <Link href="mailto:absolondesigns@gmail.com" target="_blank" rel="noopener noreferrer" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Contact</Link>
+            <Link href="https://thurnix01.github.io/absolondesigns_old/pages/resume.html" target="_blank" rel="noopener noreferrer" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Resume</Link>
           </nav>
           
           <div className="flex items-center gap-2">
@@ -75,7 +75,7 @@ export default function Home() {
                 </div>
                 <div className="text-center md:text-left">
                   <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-[var(--accent)]">
-                    Terence Absolon Graphic Designer / Front-End Developer
+                    Terence Absolon Digital Designer & Front-End Developer
                   </h1>
                   <p className="text-lg md:text-xl text-[var(--text-secondary)] mb-6">
                     Victoria, British Columbia, Canada
