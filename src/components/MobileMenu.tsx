@@ -2,9 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useTheme } from './ThemeProvider';
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme } = useTheme();
+
+  const navBackground = theme === 'dark' ? '#0f182af0' : '#f0f0f0f0';
+  const backdropBackground = theme === 'dark' ? '#0f182a' : '#f0f0f0f0';
 
   // Close menu when clicking outside or pressing escape
   useEffect(() => {
@@ -76,23 +81,22 @@ export default function MobileMenu() {
         className={`fixed inset-0 z-50 md:hidden transition-all duration-300 ease-in-out ${
           isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
-        style={{
-          backgroundColor: '#0f182aed',
-        }}
       >
         {/* Backdrop */}
         <div 
           className="absolute inset-0 backdrop-blur-sm"
           style={{
-            backgroundColor: '#0f182aed',
+            backgroundColor: backdropBackground,
           }}
           onClick={closeMenu}
         />
         
         {/* Menu Content */}
-        <div className={`relative z-10 flex flex-col h-full transition-all duration-500 ease-in-out ${
-          isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-        }`}>
+        <div 
+          className={`relative z-10 flex flex-col h-full transition-all duration-500 ease-in-out ${
+            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+          }`}
+        >
           {/* Close Button */}
           <div className="flex justify-end p-4">
             <button
@@ -107,7 +111,12 @@ export default function MobileMenu() {
           </div>
 
           {/* Navigation Links */}
-          <nav className="flex-1 flex flex-col items-center justify-center px-4 space-y-6">
+          <nav 
+            className="flex-1 flex flex-col items-center justify-center px-4 space-y-6"
+            style={{
+              backgroundColor: navBackground,
+            }}
+          >
             <Link 
               href="#home" 
               className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"

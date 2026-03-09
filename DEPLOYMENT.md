@@ -9,10 +9,10 @@ This repository is already set up with a GitHub Actions workflow that will autom
 ### Steps:
 
 1. **Create a GitHub repository**
-   - Create a new repository on GitHub (e.g., `portfolio-redesign`)
+   - Create a new repository on GitHub (e.g., `absolondesigns`)
    - Push your local repository to GitHub:
    ```bash
-   git remote add origin https://github.com/YOUR_USERNAME/portfolio-redesign.git
+   git remote add origin https://github.com/YOUR_USERNAME/absolondesigns.git
    git branch -M main
    git push -u origin main
    ```
@@ -25,7 +25,7 @@ This repository is already set up with a GitHub Actions workflow that will autom
 
 3. **View Your Site**
    - After the GitHub Actions workflow completes, your site will be available at:
-   - `https://YOUR_USERNAME.github.io/portfolio-redesign`
+   - `https://YOUR_USERNAME.github.io/absolondesigns`
 
 ## Option 2: Manual Deployment
 
@@ -69,7 +69,7 @@ If you prefer to deploy manually, follow these steps:
 
 6. **View Your Site**
    - After a few minutes, your site will be available at:
-   - `https://YOUR_USERNAME.github.io/portfolio-redesign`
+   - `https://YOUR_USERNAME.github.io/absolondesigns`
 
 ## Troubleshooting
 

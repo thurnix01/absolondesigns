@@ -16,7 +16,7 @@ git add .
 git commit -m "Initial commit"
 
 # Add GitHub remote (replace YOUR_USERNAME with your GitHub username)
-git remote add origin https://github.com/YOUR_USERNAME/portfolio-redesign.git
+git remote add origin https://github.com/YOUR_USERNAME/absolondesigns.git
 
 # Push to main branch
 git branch -M main
@@ -34,7 +34,7 @@ The GitHub Actions workflow (`.github/workflows/deploy.yml`) will automatically 
 ## 3. Access Your Site
 
 After the GitHub Actions workflow completes (check Actions tab), your site will be available at:
-`https://YOUR_USERNAME.github.io/portfolio-redesign`
+`https://YOUR_USERNAME.github.io/absolondesigns`
 
 ## 4. Make Updates
 

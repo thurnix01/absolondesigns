@@ -6,7 +6,7 @@ import MobileMenu from "../components/MobileMenu";
 import AnimatedSection from "../components/AnimatedSection";
 
 export const metadata: Metadata = {
-  title: "Portfolio - Front-End Developer & Designer",
+  title: "Absolon Designs - Graphic Designer & Front-End Developer",
   description: "Personal portfolio showcasing web development and design work",
 };
 
