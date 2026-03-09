@@ -113,6 +113,6 @@ body {
   background: var(--primary);
 }
 
-#mobile-menu div{
+#mobile-menu>div{
       background-color: #0f182aed;
 }
