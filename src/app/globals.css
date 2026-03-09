@@ -112,3 +112,7 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary);
 }
+
+#mobile-menu {
+      background-color: #0f182aed;
+}
