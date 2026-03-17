@@ -10,7 +10,7 @@
   --input-bg: #ffffff;
   --input-border: #e5e7eb;
   --section-bg: #f9fafb;
-  --text-primary: #171717;
+  --text-primary: #1e293b;
   --text-secondary: #4b5563;
   --text-muted: #6b7280;
   --primary: #3b82f6;
@@ -56,6 +56,16 @@ body {
   color: var(--foreground);
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Keep navbar logo legible: invert in light mode only */
+img[alt="Absolon Designs Logo"] {
+  filter: invert(1);
+  transition: filter 0.3s ease-in-out;
+}
+
+.dark img[alt="Absolon Designs Logo"] {
+  filter: none;
 }
 
 
