@@ -114,6 +114,33 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Testimonial Section */}
+        <section id="testimonial" className="py-20">
+          <div className="container mx-auto px-4">
+            <AnimatedSection>
+              <h2 className="text-3xl font-bold mb-8 text-center">Client testimonial</h2>
+              <div className="max-w-3xl mx-auto bg-[var(--card-bg)] p-8 rounded-lg shadow-md border border-[var(--card-border)]">
+                <p className="text-lg leading-relaxed text-[var(--text-primary)] italic">
+                  &ldquo;Absolon Designs offered to help with our business website during a brief family visit. In about 30 minutes, they created the initial draft of our webpage as promised. This also included connecting it to our domain, allowing us to immediately access and view the site via the URL.
+                </p>
+                <p className="text-lg leading-relaxed text-[var(--text-primary)] italic mt-4">
+                  We appreciate the responsiveness and efficiency shown by Absolon Designs in turning ideas into a working and visible result in a short time. The process was smooth, and the outcome was delivered quickly and effectively.&rdquo;
+                </p>
+                <p className="mt-6 text-[var(--text-secondary)]">
+                  <a
+                    href="https://ledgerxtr.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold hover:text-[var(--primary)] transition-colors duration-300 ease-in-out"
+                  >
+                    LedgerXtR
+                  </a>
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </section>
+
         {/* Projects Section */}
         <section id="projects" className="py-20 container mx-auto px-4">
           <AnimatedSection>
