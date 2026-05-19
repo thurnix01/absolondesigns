@@ -118,24 +118,44 @@ export default function Home() {
         <section id="testimonial" className="py-20">
           <div className="container mx-auto px-4">
             <AnimatedSection>
-              <h2 className="text-3xl font-bold mb-8 text-center">Client testimonial</h2>
-              <div className="max-w-3xl mx-auto bg-[var(--card-bg)] p-8 rounded-lg shadow-md border border-[var(--card-border)]">
-                <p className="text-lg leading-relaxed text-[var(--text-primary)] italic">
-                  &ldquo;Absolon Designs offered to help with our business website during a brief family visit. In about 30 minutes, they created the initial draft of our webpage as promised. This also included connecting it to our domain, allowing us to immediately access and view the site via the URL.
-                </p>
-                <p className="text-lg leading-relaxed text-[var(--text-primary)] italic mt-4">
-                  We appreciate the responsiveness and efficiency shown by Absolon Designs in turning ideas into a working and visible result in a short time. The process was smooth, and the outcome was delivered quickly and effectively.&rdquo;
-                </p>
-                <p className="mt-6 text-[var(--text-secondary)]">
-                  <a
-                    href="https://ledgerxtr.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold hover:text-[var(--primary)] transition-colors duration-300 ease-in-out"
-                  >
-                    LedgerXtR
-                  </a>
-                </p>
+              <h2 className="text-3xl font-bold mb-8 text-center">Client testimonials</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="bg-[var(--card-bg)] p-8 rounded-lg shadow-md border border-[var(--card-border)] h-full">
+                  <p className="text-lg leading-relaxed text-[var(--text-primary)] italic">
+                    &ldquo;Absolon Designs offered to help with our business website during a brief family visit. In about 30 minutes, they created the initial draft of our webpage as promised. This also included connecting it to our domain, allowing us to immediately access and view the site via the URL.
+                  </p>
+                  <p className="text-lg leading-relaxed text-[var(--text-primary)] italic mt-4">
+                    We appreciate the responsiveness and efficiency shown by Absolon Designs in turning ideas into a working and visible result in a short time. The process was smooth, and the outcome was delivered quickly and effectively.&rdquo;
+                  </p>
+                  <p className="mt-6 text-[var(--text-secondary)] font-semibold">
+                    —{" "}
+                    <a
+                      href="https://ledgerxtr.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[var(--primary)] transition-colors duration-300 ease-in-out"
+                    >
+                      LedgerXtR
+                    </a>
+                  </p>
+                </div>
+
+                <div className="bg-[var(--card-bg)] p-8 rounded-lg shadow-md border border-[var(--card-border)] h-full">
+                  <p className="text-lg leading-relaxed text-[var(--text-primary)] italic">
+                    &ldquo;Working with Absolon Designs was an amazing experience. Professional, creative, and very patient throughout the whole process. The quality of work exceeded my expectations and the attention to detail really stood out. I&apos;d highly recommend Absolon Designs to anyone looking to take their brand or business to the next level.&rdquo;
+                  </p>
+                  <p className="mt-6 text-[var(--text-secondary)] font-semibold">
+                    —{" "}
+                    <a
+                      href="https://www.mosseamoss.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-[var(--primary)] transition-colors duration-300 ease-in-out"
+                    >
+                      Mo&apos;s Seamoss
+                    </a>
+                  </p>
+                </div>
               </div>
             </AnimatedSection>
           </div>
