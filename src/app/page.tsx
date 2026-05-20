@@ -214,8 +214,8 @@ export default function Home() {
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <h2 className="text-2xl font-bold mb-6 text-center">Client testimonials</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-[var(--card-bg)] p-5 rounded-lg shadow-md border border-[var(--card-border)] h-full">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-5xl mx-auto">
+                <div className="bg-[var(--card-bg)] p-5 rounded-lg shadow-md border border-[var(--card-border)] h-full w-full max-w-[520px] mx-auto">
                   <p className="text-base leading-relaxed text-[var(--text-primary)] italic">
                     &ldquo;Absolon Designs offered to help with our business website during a brief family visit. In about 30 minutes, they created the initial draft of our webpage as promised. This also included connecting it to our domain, allowing us to immediately access and view the site via the URL.
                   </p>
@@ -235,7 +235,7 @@ export default function Home() {
                   </p>
                 </div>
 
-                <div className="bg-[var(--card-bg)] p-5 rounded-lg shadow-md border border-[var(--card-border)] h-full">
+                <div className="bg-[var(--card-bg)] p-5 rounded-lg shadow-md border border-[var(--card-border)] h-full w-full max-w-[520px] mx-auto">
                   <p className="text-base leading-relaxed text-[var(--text-primary)] italic">
                     &ldquo;Working with Absolon Designs was an amazing experience. Professional, creative, and very patient throughout the whole process. The quality of work exceeded my expectations and the attention to detail really stood out. I&apos;d highly recommend Absolon Designs to anyone looking to take their brand or business to the next level.&rdquo;
                   </p>
