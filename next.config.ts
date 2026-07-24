@@ -1,23 +1,10 @@
 import type { NextConfig } from "next";
 
-// Detect when running inside GitHub Actions so we can set the correct basePath
-const isGithubActions = !!process.env.GITHUB_ACTIONS;
-
-let basePath = "";
-let assetPrefix = "";
-
-if (isGithubActions) {
-  const repo = process.env.GITHUB_REPOSITORY?.split("/")[1];
-  if (repo) {
-    basePath = `/${repo}`;
-    assetPrefix = `/${repo}/`;
-  }
-}
-
+// This site is served on a custom domain (absolondesigns.com / cbhrcom.com),
+// so we intentionally do not set a GitHub repo basePath.
 const nextConfig: NextConfig = {
   output: "export",
-  basePath,
-  assetPrefix,
+  trailingSlash: true,
   images: {
     remotePatterns: [
       {
