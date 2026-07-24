@@ -1,0 +1,12 @@
+# Cloudflare Pages project for cbhrcom.com apex
+# Deployed from: https://github.com/thurnix01/absolondesigns
+#
+# Dashboard setup (recommended for first-time Git connect):
+# 1. https://dash.cloudflare.com → Workers & Pages → Create → Pages → Connect to Git
+# 2. Select thurnix01/absolondesigns
+# 3. Build settings below
+# 4. After deploy → Custom domains → Add cbhrcom.com
+
+name = "cbhrcom"
+compatibility_date = "2026-07-23"
+pages_build_output_dir = "out"
