@@ -1,0 +1,8 @@
+key,value
+queries_per_run,3
+max_score_per_run,12
+min_review_count,3
+city_index,0
+category_index,0
+use_pagespeed,true
+last_run,

@@ -1,0 +1,22 @@
+{
+  "description": "Cities for Places text search. Uses 'in {city} BC' — no lat/lng required for Text Search.",
+  "cities": [
+    { "id": "victoria", "name": "Victoria", "region": "Capital Regional District" },
+    { "id": "saanich", "name": "Saanich", "region": "CRD" },
+    { "id": "langford", "name": "Langford", "region": "West Shore" },
+    { "id": "colwood", "name": "Colwood", "region": "West Shore" },
+    { "id": "esquimalt", "name": "Esquimalt", "region": "CRD" },
+    { "id": "oak_bay", "name": "Oak Bay", "region": "CRD" },
+    { "id": "sidney", "name": "Sidney", "region": "Saanich Peninsula" },
+    { "id": "sooke", "name": "Sooke", "region": "West Shore" },
+    { "id": "nanaimo", "name": "Nanaimo", "region": "Central Island" },
+    { "id": "ladysmith", "name": "Ladysmith", "region": "Cowichan Valley" },
+    { "id": "duncan", "name": "Duncan", "region": "Cowichan Valley" },
+    { "id": "parksville", "name": "Parksville", "region": "Central Island" },
+    { "id": "qualicum", "name": "Qualicum Beach", "region": "Central Island" },
+    { "id": "courtenay", "name": "Courtenay", "region": "Comox Valley" },
+    { "id": "comox", "name": "Comox", "region": "Comox Valley" },
+    { "id": "campbell_river", "name": "Campbell River", "region": "North Island" },
+    { "id": "port_alberni", "name": "Port Alberni", "region": "Central Island" }
+  ]
+}

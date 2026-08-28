@@ -1,0 +1,31 @@
+{
+  "description": "Google Places text queries — rotate through these per city. Format: '{query} in {city} BC'",
+  "categories": [
+    { "id": "music_store", "query": "music store", "notes": "Like Tempo Trend" },
+    { "id": "auto_repair", "query": "auto repair shop", "notes": "General auto" },
+    { "id": "diesel_repair", "query": "diesel repair", "notes": "Like Level 1 Customz" },
+    { "id": "car_detailing", "query": "car detailing", "notes": "" },
+    { "id": "plumber", "query": "plumber", "notes": "Trades" },
+    { "id": "electrician", "query": "electrician", "notes": "Trades" },
+    { "id": "hvac", "query": "HVAC contractor", "notes": "Trades" },
+    { "id": "roofing", "query": "roofing contractor", "notes": "Trades" },
+    { "id": "landscaping", "query": "landscaping company", "notes": "" },
+    { "id": "dentist", "query": "dentist", "notes": "Professional services" },
+    { "id": "veterinarian", "query": "veterinarian", "notes": "" },
+    { "id": "bakery", "query": "bakery", "notes": "Retail" },
+    { "id": "bike_shop", "query": "bicycle shop", "notes": "Your niche" },
+    { "id": "marine", "query": "marine supply", "notes": "Island relevant" },
+    { "id": "furniture_store", "query": "furniture store", "notes": "Retail" },
+    { "id": "pet_grooming", "query": "pet grooming", "notes": "" },
+    { "id": "tattoo", "query": "tattoo shop", "notes": "Often dated sites" },
+    { "id": "accountant", "query": "accountant", "notes": "Professional" },
+    { "id": "lawyer", "query": "lawyer", "notes": "Professional" },
+    { "id": "restaurant", "query": "restaurant", "notes": "High volume — use sparingly" }
+  ],
+  "settings": {
+    "maxResultsPerQuery": 15,
+    "skipIfNoWebsite": true,
+    "minGoogleReviews": 3,
+    "notes": "minGoogleReviews filters out brand-new listings with no traction"
+  }
+}

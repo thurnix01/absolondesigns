@@ -1,0 +1,384 @@
+{
+  "name": "VI Bad-Site Scanner (review only)",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "manual-trigger",
+      "name": "Manual Run",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [0, 400]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "config"
+        },
+        "options": {}
+      },
+      "id": "read-config",
+      "name": "Read Config",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [220, 300],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "prospects_review"
+        },
+        "options": {}
+      },
+      "id": "read-existing",
+      "name": "Read Existing Prospects",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [220, 500],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const configRows = $('Read Config').all();\nconst cfg = {};\nfor (const r of configRows) {\n  if (r.json.key) cfg[r.json.key] = r.json.value;\n}\n\nconst queriesPerRun = parseInt(cfg.queries_per_run || '3', 10);\nconst minReviews = parseInt(cfg.min_review_count || '3', 10);\nlet cityIndex = parseInt(cfg.city_index || '0', 10);\nlet categoryIndex = parseInt(cfg.category_index || '0', 10);\n\nconst cities = [\n  { name: 'Victoria', region: 'CRD' },\n  { name: 'Saanich', region: 'CRD' },\n  { name: 'Langford', region: 'West Shore' },\n  { name: 'Nanaimo', region: 'Central Island' },\n  { name: 'Duncan', region: 'Cowichan Valley' },\n  { name: 'Courtenay', region: 'Comox Valley' },\n  { name: 'Campbell River', region: 'North Island' },\n  { name: 'Sidney', region: 'Saanich Peninsula' },\n  { name: 'Sooke', region: 'West Shore' },\n  { name: 'Parksville', region: 'Central Island' },\n  { name: 'Ladysmith', region: 'Cowichan Valley' },\n  { name: 'Colwood', region: 'West Shore' },\n  { name: 'Oak Bay', region: 'CRD' },\n  { name: 'Esquimalt', region: 'CRD' },\n  { name: 'Qualicum Beach', region: 'Central Island' },\n  { name: 'Port Alberni', region: 'Central Island' },\n  { name: 'Comox', region: 'Comox Valley' }\n];\n\nconst categories = [\n  { id: 'music_store', query: 'music store' },\n  { id: 'diesel_repair', query: 'diesel repair' },\n  { id: 'auto_repair', query: 'auto repair shop' },\n  { id: 'plumber', query: 'plumber' },\n  { id: 'electrician', query: 'electrician' },\n  { id: 'hvac', query: 'HVAC contractor' },\n  { id: 'bike_shop', query: 'bicycle shop' },\n  { id: 'marine', query: 'marine supply' },\n  { id: 'veterinarian', query: 'veterinarian' },\n  { id: 'bakery', query: 'bakery' },\n  { id: 'landscaping', query: 'landscaping company' },\n  { id: 'roofing', query: 'roofing contractor' },\n  { id: 'dentist', query: 'dentist' },\n  { id: 'pet_grooming', query: 'pet grooming' },\n  { id: 'furniture_store', query: 'furniture store' }\n];\n\nconst existingIds = new Set(\n  $('Read Existing Prospects').all()\n    .map(i => (i.json.place_id || '').toString())\n    .filter(Boolean)\n);\n\nconst queue = [];\nfor (let i = 0; i < queriesPerRun; i++) {\n  const city = cities[cityIndex % cities.length];\n  const cat = categories[categoryIndex % categories.length];\n  queue.push({\n    text_query: `${cat.query} in ${city.name} BC`,\n    category_id: cat.id,\n    city_name: city.name,\n    region: city.region,\n    min_review_count: minReviews,\n    existing_place_ids: [...existingIds],\n    next_city_index: (cityIndex + 1) % cities.length,\n    next_category_index: (categoryIndex + 1) % categories.length\n  });\n  categoryIndex++;\n  if (categoryIndex % categories.length === 0) cityIndex++;\n}\n\nreturn queue.map(j => ({ json: j }));"
+      },
+      "id": "build-queue",
+      "name": "Build Search Queue",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [440, 400]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://places.googleapis.com/v1/places:searchText",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "X-Goog-Api-Key",
+              "value": "YOUR_GOOGLE_API_KEY"
+            },
+            {
+              "name": "X-Goog-FieldMask",
+              "value": "places.id,places.displayName,places.formattedAddress,places.nationalPhoneNumber,places.websiteUri,places.rating,places.userRatingCount,places.googleMapsUri,places.primaryType"
+            },
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"textQuery\": {{ JSON.stringify($json.text_query) }},\n  \"maxResultCount\": 15,\n  \"languageCode\": \"en\",\n  \"regionCode\": \"CA\"\n}",
+        "options": {
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 1200
+            }
+          }
+        }
+      },
+      "id": "places-search",
+      "name": "Google Places Search",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [660, 400],
+      "notes": "Replace YOUR_GOOGLE_API_KEY. Enable Places API (New) in Google Cloud."
+    },
+    {
+      "parameters": {
+        "jsCode": "const meta = $('Build Search Queue').item.json;\nconst places = $input.first().json.places || [];\nconst existing = new Set(meta.existing_place_ids || []);\nconst minReviews = meta.min_review_count || 3;\n\nconst out = [];\nfor (const p of places) {\n  const website = p.websiteUri;\n  if (!website) continue;\n  const reviews = p.userRatingCount || 0;\n  if (reviews < minReviews) continue;\n  const placeId = (p.id || '').replace(/^places\\//, '');\n  if (!placeId || existing.has(placeId)) continue;\n  existing.add(placeId);\n\n  out.push({\n    place_id: placeId,\n    business_name: p.displayName?.text || '',\n    address: p.formattedAddress || '',\n    phone: p.nationalPhoneNumber || '',\n    website,\n    google_maps_url: p.googleMapsUri || '',\n    category: meta.category_id,\n    city: meta.city_name,\n    region: meta.region,\n    google_rating: p.rating ?? '',\n    review_count: reviews,\n    next_city_index: meta.next_city_index,\n    next_category_index: meta.next_category_index\n  });\n}\n\nif (out.length === 0) {\n  return [{ json: { _empty: true, message: 'No new prospects with websites for this query' } }];\n}\nreturn out.map(j => ({ json: j }));"
+      },
+      "id": "parse-places",
+      "name": "Parse and Dedupe",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [880, 400]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "not-empty",
+              "leftValue": "={{ $json._empty }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "if-has-prospects",
+      "name": "Has New Prospects?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1100, 400]
+    },
+    {
+      "parameters": {
+        "maxItems": 12
+      },
+      "id": "limit-score",
+      "name": "Limit Per Run",
+      "type": "n8n-nodes-base.limit",
+      "typeVersion": 1,
+      "position": [1320, 320],
+      "notes": "Match config max_score_per_run — default 12"
+    },
+    {
+      "parameters": {
+        "url": "=https://www.googleapis.com/pagespeedonline/v5/runPagespeed",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "url", "value": "={{ $json.website }}" },
+            { "name": "strategy", "value": "mobile" },
+            { "name": "category", "value": "performance" },
+            { "name": "key", "value": "YOUR_GOOGLE_API_KEY" }
+          ]
+        },
+        "options": {
+          "timeout": 120000,
+          "batching": {
+            "batch": {
+              "batchSize": 1,
+              "batchInterval": 2500
+            }
+          }
+        }
+      },
+      "id": "pagespeed-mobile",
+      "name": "PageSpeed Mobile",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1540, 220]
+    },
+    {
+      "parameters": {
+        "url": "=https://www.googleapis.com/pagespeedonline/v5/runPagespeed",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            { "name": "url", "value": "={{ $('Limit Per Run').item.json.website }}" },
+            { "name": "strategy", "value": "desktop" },
+            { "name": "category", "value": "performance" },
+            { "name": "key", "value": "YOUR_GOOGLE_API_KEY" }
+          ]
+        },
+        "options": {
+          "timeout": 120000
+        }
+      },
+      "id": "pagespeed-desktop",
+      "name": "PageSpeed Desktop",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1760, 220]
+    },
+    {
+      "parameters": {
+        "url": "={{ $('Limit Per Run').item.json.website }}",
+        "options": {
+          "timeout": 15000,
+          "redirect": {
+            "redirect": {
+              "followRedirects": true,
+              "maxRedirects": 5
+            }
+          },
+          "response": {
+            "response": {
+              "fullResponse": true,
+              "responseFormat": "text"
+            }
+          }
+        }
+      },
+      "id": "fetch-website",
+      "name": "Fetch Homepage",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [1540, 420],
+      "onError": "continueRegularOutput",
+      "notes": "Continues on error (site down still gets scored)"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "id": "merge-scores",
+      "name": "Merge Scores",
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3,
+      "position": [1980, 320]
+    },
+    {
+      "parameters": {
+        "jsCode": "const prospect = $('Limit Per Run').item.json;\nconst mobileRaw = $('PageSpeed Mobile').first().json;\nconst desktopRaw = $('PageSpeed Desktop').first().json;\nconst fetch = $('Fetch Homepage').first().json;\n\nconst parsePs = (d) => {\n  const s = d?.lighthouseResult?.categories?.performance?.score;\n  return s == null ? null : Math.round(s * 100);\n};\n\nconst mobile = parsePs(mobileRaw);\nconst desktop = parsePs(desktopRaw);\n\nconst statusCode = fetch.statusCode || fetch.status || 0;\nconst html = typeof fetch.body === 'string' ? fetch.body : (fetch.data || '');\nconst website = prospect.website || '';\nconst hasHttps = website.startsWith('https://');\nconst hasViewport = /<meta[^>]+name=[\"']viewport[\"']/i.test(html);\nconst start = fetch.headers?.['request-duration'] || 0;\nconst responseTimeMs = fetch.timings?.total || (statusCode ? 1500 : 9999);\n\nconst issues = [];\nlet points = 0;\n\nif (mobile != null && mobile < 50) { issues.push(`Very slow mobile (${mobile})`); points += 35; }\nelse if (mobile != null && mobile < 70) { issues.push(`Slow mobile (${mobile})`); points += 20; }\nif (desktop != null && desktop < 60) { issues.push(`Slow desktop (${desktop})`); points += 15; }\nif (!hasHttps) { issues.push('No HTTPS'); points += 25; }\nif (!hasViewport && html) { issues.push('No mobile viewport'); points += 25; }\nif (statusCode >= 400 || !html) { issues.push('Site error or unreachable'); points += 30; }\nif (/wix\\.com|wixsite\\.com/i.test(html)) { issues.push('Wix builder'); points += 5; }\nif (/squarespace\\.com/i.test(html)) { issues.push('Squarespace'); points += 5; }\n\nconst reviews = parseInt(prospect.review_count, 10) || 0;\nif (reviews >= 10 && points >= 15) {\n  issues.push('Established on Maps, site undersells them');\n  points += 10;\n}\n\nlet review_priority = 'skip';\nif (points >= 45) review_priority = 'high';\nelse if (points >= 25) review_priority = 'medium';\nelse if (points >= 12) review_priority = 'low';\n\nreturn [{\n  json: {\n    place_id: prospect.place_id,\n    business_name: prospect.business_name,\n    address: prospect.address,\n    phone: prospect.phone,\n    website: prospect.website,\n    google_maps_url: prospect.google_maps_url,\n    category: prospect.category,\n    city: prospect.city,\n    region: prospect.region,\n    google_rating: prospect.google_rating,\n    review_count: prospect.review_count,\n    mobile_pagespeed: mobile ?? '',\n    desktop_pagespeed: desktop ?? '',\n    has_https: hasHttps,\n    has_viewport: hasViewport,\n    response_time_ms: responseTimeMs,\n    site_issues: [...new Set(issues)].join('; '),\n    review_priority,\n    review_status: 'new',\n    discovered_at: new Date().toISOString(),\n    notes: ''\n  }\n}];"
+      },
+      "id": "score-website",
+      "name": "Score Website",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2200, 320]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "mode": "id",
+          "value": "YOUR_GOOGLE_SHEET_ID"
+        },
+        "sheetName": {
+          "__rl": true,
+          "mode": "name",
+          "value": "prospects_review"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {}
+        },
+        "options": {}
+      },
+      "id": "append-sheet",
+      "name": "Append to Review Sheet",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [2420, 320],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "GOOGLE_SHEETS_CREDENTIAL_ID",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const first = $('Build Search Queue').first().json;\nreturn [{\n  json: {\n    key: 'city_index',\n    value: String(first.next_city_index ?? 0)\n  }\n}, {\n  json: {\n    key: 'category_index',\n    value: String(first.next_category_index ?? 0)\n  }\n}, {\n  json: {\n    key: 'last_run',\n    value: new Date().toISOString()\n  }\n}];"
+      },
+      "id": "prep-config-update",
+      "name": "Prep Config Update",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [2420, 520]
+    },
+    {
+      "parameters": {
+        "content": "## VI Bad-Site Scanner\n\n**Review only — no email sent.**\n\n1. Replace `YOUR_GOOGLE_SHEET_ID` and `YOUR_GOOGLE_API_KEY`\n2. Create Sheet tabs: `prospects_review`, `config`\n3. Run manually first with Limit = 3\n4. Review rows in Sheet using REVIEW-CHECKLIST.md\n\nRotate cities/categories each run via config indices.",
+        "height": 280,
+        "width": 380
+      },
+      "id": "sticky-note",
+      "name": "Sticky Note",
+      "type": "n8n-nodes-base.stickyNote",
+      "typeVersion": 1,
+      "position": [-40, 120]
+    }
+  ],
+  "connections": {
+    "Manual Run": {
+      "main": [
+        [
+          { "node": "Read Config", "type": "main", "index": 0 },
+          { "node": "Read Existing Prospects", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "Read Config": {
+      "main": [[{ "node": "Build Search Queue", "type": "main", "index": 0 }]]
+    },
+    "Read Existing Prospects": {
+      "main": [[{ "node": "Build Search Queue", "type": "main", "index": 0 }]]
+    },
+    "Build Search Queue": {
+      "main": [[{ "node": "Google Places Search", "type": "main", "index": 0 }]]
+    },
+    "Google Places Search": {
+      "main": [[{ "node": "Parse and Dedupe", "type": "main", "index": 0 }]]
+    },
+    "Parse and Dedupe": {
+      "main": [[{ "node": "Has New Prospects?", "type": "main", "index": 0 }]]
+    },
+    "Has New Prospects?": {
+      "main": [
+        [{ "node": "Limit Per Run", "type": "main", "index": 0 }],
+        []
+      ]
+    },
+    "Limit Per Run": {
+      "main": [
+        [
+          { "node": "PageSpeed Mobile", "type": "main", "index": 0 },
+          { "node": "Fetch Homepage", "type": "main", "index": 0 }
+        ]
+      ]
+    },
+    "PageSpeed Mobile": {
+      "main": [[{ "node": "PageSpeed Desktop", "type": "main", "index": 0 }]]
+    },
+    "PageSpeed Desktop": {
+      "main": [[{ "node": "Merge Scores", "type": "main", "index": 0 }]]
+    },
+    "Fetch Homepage": {
+      "main": [[{ "node": "Merge Scores", "type": "main", "index": 1 }]]
+    },
+    "Merge Scores": {
+      "main": [[{ "node": "Score Website", "type": "main", "index": 0 }]]
+    },
+    "Score Website": {
+      "main": [
+        [
+          { "node": "Append to Review Sheet", "type": "main", "index": 0 },
+          { "node": "Prep Config Update", "type": "main", "index": 0 }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "timezone": "America/Vancouver"
+  },
+  "meta": {
+    "templateCredsSetupCompleted": false
+  },
+  "pinData": {}
+}
