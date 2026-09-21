@@ -123,6 +123,58 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {/* Project 1 */}
             <AnimatedSection delay={100} className="h-full">
+            <Link href="https://noccareers.ca"
+              className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
+              <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
+                <div className="relative h-60 overflow-hidden">
+                  <Image
+                    src="preview_07.jpg"
+                    alt="NOC Careers"
+                    fill
+                    unoptimized
+                    style={{objectFit: "cover"}}
+                    className="group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                  />
+                </div>
+                <div className="p-6 flex flex-col h-[calc(100%-15rem)]">
+                  <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">NOC Careers</h3>
+                  <p className="text-[var(--text-secondary)] mb-4 flex-grow">
+                    Built a search site for Canada&apos;s Rural Community Immigration Pilot that surfaces priority NOCs and designated employers across participating communities. Design focused on a brand-led header, place photography, and clear Sora/Manrope typography; layout centers a filterable directory with community cards and result sorting; content keeps visitors oriented toward official portals rather than replacing them.
+                  </p>
+                  <p className="text-sm text-[var(--text-muted)] italic">React, Vite, n8n, Google Sheets, GitHub Pages</p>
+                </div>
+              </div>
+              </Link>
+            </AnimatedSection>
+
+            {/* Project 2 */}
+            <AnimatedSection delay={200} className="h-full">
+            <Link href="https://ledgerxtr.com/"
+              className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
+              <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
+                <div className="relative h-60 overflow-hidden">
+                  <Image
+                    src="preview_08.jpg"
+                    alt="LedgerXTR"
+                    fill
+                    unoptimized
+                    style={{objectFit: "cover"}}
+                    className="group-hover:scale-105 transition-transform duration-700 ease-in-out"
+                  />
+                </div>
+                <div className="p-6 flex flex-col h-[calc(100%-15rem)]">
+                  <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">LedgerXTR</h3>
+                  <p className="text-[var(--text-secondary)] mb-4 flex-grow">
+                    Designed and built a single-page site for a bookkeeping brand focused on financial clarity for growing businesses. Design leans on a calm brand-led hero and photography that signals trust; layout moves visitors through services, process, FAQ, and a contact form in one scroll; content keeps messaging practical and leads route into Google Sheets and Outlook through n8n.
+                  </p>
+                  <p className="text-sm text-[var(--text-muted)] italic">React, Vite, TypeScript, n8n, Google Sheets, GitHub Pages</p>
+                </div>
+              </div>
+              </Link>
+            </AnimatedSection>
+
+            {/* Project 3 */}
+            <AnimatedSection delay={300} className="h-full">
             <Link href="https://thurnix01.github.io/page_info_template_builder/"
               className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
               <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
@@ -147,8 +199,8 @@ export default function Home() {
               </Link>
             </AnimatedSection>
 
-            {/* Project 2 */}
-            <AnimatedSection delay={200} className="h-full">
+            {/* Project 4 */}
+            <AnimatedSection delay={400} className="h-full">
             <Link href="https://www.performancebike.com/how-to-crush-your-first-gravel-race/cp1744"
               className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
               <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
@@ -173,8 +225,8 @@ export default function Home() {
               </Link>
             </AnimatedSection>
 
-            {/* Project 3 */}
-            <AnimatedSection delay={300} className="h-full">
+            {/* Project 5 */}
+            <AnimatedSection delay={500} className="h-full">
             <Link href="https://www.behance.net/gallery/79189727/Washburn-Instagram-Ad"
               className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
               <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
@@ -200,7 +252,7 @@ export default function Home() {
             </AnimatedSection>
           </div>
           
-          <AnimatedSection delay={400}>
+          <AnimatedSection delay={600}>
             <div className="text-center mt-12">
               <a href="https://www.behance.net/absolondesigns" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white rounded-md transition-all duration-300 ease-in-out hover:shadow-lg transform hover:scale-105">
                 View more projects
