@@ -1,0 +1,159 @@
+.share {
+  position: relative;
+  flex: 1;
+  display: grid;
+  place-items: center;
+  padding: 1.5rem 1.1rem 2rem;
+  color: #f5f8fc;
+  background:
+    radial-gradient(70% 40% at 50% 0%, rgba(47, 124, 246, 0.2), transparent 60%),
+    #070b12;
+}
+
+.share-card {
+  position: relative;
+  width: min(100%, 400px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 2.4rem 1.5rem 1.7rem;
+  border-radius: 32px;
+  background: linear-gradient(180deg, #10192b 0%, #0a101b 100%);
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.35),
+    0 0 36px rgba(47, 124, 246, 0.12);
+}
+
+.share-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: conic-gradient(
+    from var(--qr-angle),
+    rgba(125, 211, 252, 0.05),
+    #7dd3fc,
+    rgba(47, 124, 246, 0.15) 28%,
+    rgba(125, 211, 252, 0.05) 48%,
+    #93c5fd,
+    rgba(125, 211, 252, 0.05)
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: qr-spin-angle 12s linear infinite;
+  pointer-events: none;
+}
+
+@property --qr-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.share-logo {
+  width: 86px;
+  height: auto;
+  mix-blend-mode: screen;
+  filter: drop-shadow(0 0 14px rgba(125, 211, 252, 0.45));
+}
+
+.share-name {
+  margin: 1.15rem 0 0;
+  font-size: clamp(1.35rem, 4.4vw, 1.7rem);
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.share-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  width: min(100%, 280px);
+  margin: 0.85rem 0 0;
+  color: #e7eef8;
+  font-size: 0.68rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+}
+
+.share-brand::before,
+.share-brand::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(90deg, transparent, rgba(147, 197, 253, 0.85), transparent);
+}
+
+.share-services {
+  margin: 0.7rem 0 0;
+  color: #9aafc6;
+  font-size: 0.86rem;
+  letter-spacing: 0.01em;
+}
+
+.share-qr {
+  position: relative;
+  width: min(100%, 268px);
+  margin-top: 1.6rem;
+  padding: 0.7rem;
+  border-radius: 22px;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 1px rgba(125, 211, 252, 0.55),
+    0 0 28px rgba(47, 124, 246, 0.28);
+}
+
+.share-qr img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.share-scan {
+  margin: 1.45rem 0 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: #d7e7f8;
+}
+
+.share-url {
+  margin: 0.55rem 0 0;
+  color: #9ecbff;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  text-decoration: none;
+}
+
+.share-url:hover { color: #ffffff; }
+
+.share-url:focus-visible {
+  outline: 2px solid #7dd3fc;
+  outline-offset: 3px;
+}
+
+@keyframes qr-spin-angle {
+  to { --qr-angle: 360deg; }
+}
+
+@media (max-width: 640px) {
+  .share {
+    padding: 1.25rem 0.85rem 1.5rem;
+    align-items: start;
+  }
+
+  .share-card {
+    width: 100%;
+    min-height: calc(100dvh - 4.2rem);
+    justify-content: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .share-card::before { animation: none; }
+}

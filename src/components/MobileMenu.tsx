@@ -118,25 +118,32 @@ export default function MobileMenu() {
             }}
           >
             <Link 
-              href="#home" 
+              href="/#home" 
               className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
               onClick={closeMenu}
             >
               Home
             </Link>
             <Link 
-              href="#about" 
+              href="/#about" 
               className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
               onClick={closeMenu}
             >
               About
             </Link>
             <Link 
-              href="#projects" 
+              href="/#projects" 
               className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
               onClick={closeMenu}
             >
               Projects
+            </Link>
+            <Link 
+              href="/card/" 
+              className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
+              onClick={closeMenu}
+            >
+              QR Card
             </Link>
             <Link 
               href="https://thurnix01.github.io/absolondesigns_old/pages/resume.html"

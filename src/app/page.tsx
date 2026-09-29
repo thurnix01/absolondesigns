@@ -30,9 +30,10 @@ export default function Home() {
           </div>
           
           <nav className="hidden md:flex gap-6">
-            <Link href="#home" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Home</Link>
-            <Link href="#about" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">About</Link>
-            <Link href="#projects" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Projects</Link>
+            <Link href="/#home" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Home</Link>
+            <Link href="/#about" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">About</Link>
+            <Link href="/#projects" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Projects</Link>
+            <Link href="/card/" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">QR Card</Link>
             <Link href="https://thurnix01.github.io/absolondesigns_old/pages/resume.html" target="_blank" rel="noopener noreferrer" className="text-[var(--text-primary)] hover:text-[var(--primary)] transition-colors duration-300 ease-in-out">Resume</Link>
           </nav>
           
