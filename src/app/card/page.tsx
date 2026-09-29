@@ -77,6 +77,9 @@ export default function QrCardPage() {
           absolondesigns.com
         </a>
       </article>
+      <a className="share-download" href="/absolon-lock-screen.png" download>
+        Save lock screen image
+      </a>
     </main>
     </div>
   );
