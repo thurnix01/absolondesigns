@@ -20,10 +20,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/hero_img.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Absolon Designs portfolio",
+        url: "/og-image.jpg",
+        width: 2400,
+        height: 1260,
+        alt: "Terence Absolon — Digital Marketing Specialist | Absolon Designs",
       },
     ],
   },
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     title: "Absolon Designs - Graphic Designer & Front-End Developer",
     description:
       "Personal portfolio showcasing web development and design work by Terence Absolon in Victoria, BC.",
-    images: ["/hero_img.jpg"],
+    images: ["/og-image.jpg"],
   },
 };
 

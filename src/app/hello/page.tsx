@@ -17,10 +17,10 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/profile.png",
-        width: 1200,
-        height: 630,
-        alt: "Terence Absolon",
+        url: "/og-image.jpg",
+        width: 2400,
+        height: 1260,
+        alt: "Terence Absolon — Digital Marketing Specialist | Absolon Designs",
       },
     ],
   },
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Hello — Absolon Designs",
     description: "Terence Absolon's portfolio, profiles, and contact.",
-    images: ["/profile.png"],
+    images: ["/og-image.jpg"],
   },
 };
 

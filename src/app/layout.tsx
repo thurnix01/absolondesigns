@@ -25,10 +25,10 @@ const siteTitle = "Absolon Designs - Graphic Designer & Front-End Developer";
 const siteDescription =
   "Personal portfolio for a Graphic Designer and Front-End Developer based in Victoria, British Columbia, Canada";
 const ogImage = {
-  url: "/hero_img.jpg",
-  width: 1200,
-  height: 630,
-  alt: "Absolon Designs — Graphic Designer & Front-End Developer",
+  url: "/og-image.jpg",
+  width: 2400,
+  height: 1260,
+  alt: "Terence Absolon — Digital Marketing Specialist | Absolon Designs",
 };
 
 export const metadata: Metadata = {
