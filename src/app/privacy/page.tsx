@@ -94,7 +94,7 @@ export default function PrivacyPage() {
       <h2>10. Contact</h2>
       <p>
         Privacy questions:{" "}
-        <a href="mailto:hello@absolondesigns.com">hello@absolondesigns.com</a>
+        <a href="mailto:absolondesigns@gmail.com">absolondesigns@gmail.com</a>
         {" "}or via{" "}
         <a href="https://absolondesigns.com">absolondesigns.com</a>.
       </p>

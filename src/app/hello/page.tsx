@@ -71,7 +71,7 @@ export default function HelloPage() {
               width={40}
               height={40}
               unoptimized
-              className="rounded-full invert dark:invert-0"
+              className="rounded-full transition-[filter] duration-300 ease-in-out"
             />
             <span className="text-lg font-bold">Absolon Designs</span>
           </Link>
