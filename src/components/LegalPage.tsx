@@ -13,13 +13,15 @@ export default function LegalPage({ title, children }: LegalPageProps) {
       <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--header-bg)] border-b border-[var(--card-border)]">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-4">
-            <Image
-              src="/ad-favicon-32x32.png"
-              alt="Absolon Designs Logo"
-              width={40}
-              height={40}
-              className="h-10 w-10 object-contain transition-[filter] duration-300 ease-in-out"
-            />
+            <div className="h-10 relative">
+              <Image
+                src="/absolon_designs_logo_blk_edit.gif"
+                alt="Absolon Designs Logo"
+                width={70}
+                height={70}
+                className="rounded-full invert dark:invert-0 transition-[filter] duration-300 ease-in-out"
+              />
+            </div>
             <span className="text-lg font-bold hidden sm:block">
               Absolon Designs
             </span>

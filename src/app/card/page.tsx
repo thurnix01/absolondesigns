@@ -53,7 +53,7 @@ export default function QrCardPage() {
               width={70}
               height={70}
               unoptimized
-              className="rounded-full transition-[filter] duration-300 ease-in-out"
+              className="rounded-full invert dark:invert-0 transition-[filter] duration-300 ease-in-out"
             />
             <span className="text-lg font-bold hidden sm:block">Absolon Designs</span>
           </Link>

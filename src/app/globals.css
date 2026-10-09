@@ -58,14 +58,14 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
-/* Black logo: keep as-is in light mode; invert to white in dark mode */
+/* Keep navbar logo legible: invert in light mode only */
 img[alt="Absolon Designs Logo"] {
-  filter: none;
+  filter: invert(1);
   transition: filter 0.3s ease-in-out;
 }
 
 .dark img[alt="Absolon Designs Logo"] {
-  filter: invert(1);
+  filter: none;
 }
 
 
