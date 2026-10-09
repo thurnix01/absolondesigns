@@ -41,6 +41,8 @@ jobs:
           test -f out/index.html
           test -f out/terms/index.html
           test -f out/privacy/index.html
+          test -f out/sitemap.xml
+          test -f out/robots.txt
           touch out/.nojekyll
           # Keep custom domain for GitHub Pages
           if [ -f CNAME ]; then cp CNAME out/CNAME; fi

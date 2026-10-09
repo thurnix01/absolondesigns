@@ -7,6 +7,29 @@ import MobileMenu from "@/components/MobileMenu";
 export const metadata: Metadata = {
   title: "Hello — Absolon Designs",
   description: "Terence Absolon's portfolio, profiles, and contact.",
+  alternates: {
+    canonical: "/hello/",
+  },
+  openGraph: {
+    title: "Hello — Absolon Designs",
+    description: "Terence Absolon's portfolio, profiles, and contact.",
+    url: "https://absolondesigns.com/hello/",
+    type: "website",
+    images: [
+      {
+        url: "/profile.png",
+        width: 1200,
+        height: 630,
+        alt: "Terence Absolon",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hello — Absolon Designs",
+    description: "Terence Absolon's portfolio, profiles, and contact.",
+    images: ["/profile.png"],
+  },
 };
 
 const links = [

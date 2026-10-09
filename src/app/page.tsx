@@ -7,7 +7,33 @@ import AnimatedSection from "../components/AnimatedSection";
 
 export const metadata: Metadata = {
   title: "Absolon Designs - Graphic Designer & Front-End Developer",
-  description: "Personal portfolio showcasing web development and design work",
+  description:
+    "Personal portfolio showcasing web development and design work by Terence Absolon in Victoria, BC.",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Absolon Designs - Graphic Designer & Front-End Developer",
+    description:
+      "Personal portfolio showcasing web development and design work by Terence Absolon in Victoria, BC.",
+    url: "https://absolondesigns.com/",
+    type: "website",
+    images: [
+      {
+        url: "/hero_img.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Absolon Designs portfolio",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Absolon Designs - Graphic Designer & Front-End Developer",
+    description:
+      "Personal portfolio showcasing web development and design work by Terence Absolon in Victoria, BC.",
+    images: ["/hero_img.jpg"],
+  },
 };
 
 export default function Home() {

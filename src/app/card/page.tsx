@@ -7,7 +7,33 @@ import "./card.css";
 
 export const metadata: Metadata = {
   title: "Terence Absolon — Absolon Designs",
-  description: "A digital business card for Terence Absolon. Scan to view work, contact, and profile links.",
+  description:
+    "A digital business card for Terence Absolon. Scan to view work, contact, and profile links.",
+  alternates: {
+    canonical: "/card/",
+  },
+  openGraph: {
+    title: "Terence Absolon — Absolon Designs",
+    description:
+      "A digital business card for Terence Absolon. Scan to view work, contact, and profile links.",
+    url: "https://absolondesigns.com/card/",
+    type: "website",
+    images: [
+      {
+        url: "/card-qr.png",
+        width: 1200,
+        height: 630,
+        alt: "Terence Absolon digital business card",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Terence Absolon — Absolon Designs",
+    description:
+      "A digital business card for Terence Absolon. Scan to view work, contact, and profile links.",
+    images: ["/card-qr.png"],
+  },
   appleWebApp: {
     capable: true,
     title: "Absolon",

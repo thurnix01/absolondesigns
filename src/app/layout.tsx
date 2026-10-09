@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -19,10 +20,65 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://absolondesigns.com";
+const siteTitle = "Absolon Designs - Graphic Designer & Front-End Developer";
+const siteDescription =
+  "Personal portfolio for a Graphic Designer and Front-End Developer based in Victoria, British Columbia, Canada";
+const ogImage = {
+  url: "/hero_img.jpg",
+  width: 1200,
+  height: 630,
+  alt: "Absolon Designs — Graphic Designer & Front-End Developer",
+};
+
 export const metadata: Metadata = {
-  title: "Absolon Designs - Graphic Designer & Front-End Developer",
-  description: "Personal portfolio for a Graphic Designer and Front-End Developer based in Victoria, British Columbia, Canada",
-  keywords: ["portfolio", "web developer", "graphic designer", "front-end", "designer", "developer"],
+  metadataBase: new URL(siteUrl),
+  title: siteTitle,
+  description: siteDescription,
+  keywords: [
+    "portfolio",
+    "web developer",
+    "graphic designer",
+    "front-end",
+    "designer",
+    "developer",
+    "Victoria BC",
+    "Absolon Designs",
+    "Terence Absolon",
+  ],
+  authors: [{ name: "Terence Absolon", url: siteUrl }],
+  creator: "Terence Absolon",
+  publisher: "Absolon Designs",
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_CA",
+    url: siteUrl,
+    siteName: "Absolon Designs",
+    title: siteTitle,
+    description: siteDescription,
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: [ogImage.url],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
+  },
+  icons: {
+    icon: "/ad-favicon-32x32.png",
+    apple: "/ad-favicon-32x32.png",
+  },
 };
 
 export default function RootLayout({
@@ -32,12 +88,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <head>
-        {/* Remove inline script to avoid hydration mismatch */}
-      </head>
       <body
         className={`${inter.variable} ${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <GoogleAnalytics />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
