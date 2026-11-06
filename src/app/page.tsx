@@ -4,6 +4,8 @@ import { Metadata } from "next";
 import ThemeToggle from "../components/ThemeToggle";
 import MobileMenu from "../components/MobileMenu";
 import AnimatedSection from "../components/AnimatedSection";
+import ParallaxHero from "../components/ParallaxHero";
+import ProjectGallery from "../components/ProjectGallery";
 
 export const metadata: Metadata = {
   title: "Absolon Designs - Graphic Designer & Front-End Developer",
@@ -70,223 +72,34 @@ export default function Home() {
         </div>
       </header>
 
-      <main>
-        {/* Hero Section */}
-        <section id="home" className="py-20 md:py-32 container mx-auto px-4">
-          <AnimatedSection>
-            <div className="max-w-3xl mx-auto md:mx-0" style={{ margin: "0 auto" }}>
-              <div className="flex flex-col md:flex-row gap-10 items-center md:items-start">
-                <div className="relative w-48 h-48 rounded-full overflow-hidden border-4 border-[var(--card-border)] shadow-lg" style={{
-                  borderRadius: "50%",
-                  maxWidth: "190px",
-                  width: "100%"
-                }}>
-                  <Image
-                    src="profile.png"
-                    alt="Profile Picture"
-                    fill
-                    unoptimized
-                    style={{
-                      position: "absolute",
-                      height: "100%",
-                      width: "100%",
-                      left: 0,
-                      top: 0,
-                      right: 0,
-                      bottom: 0,
-                      objectFit: "cover"
-                    }}
-                    priority
-                    className="transition-transform duration-500 ease-in-out hover:scale-105"
-                  />
-                </div>
-                <div className="text-center md:text-left">
-                  <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-[var(--accent)]">
-                    Terence Absolon Digital Designer & Front-End Developer
-                  </h1>
-                  <p className="text-lg md:text-xl text-[var(--text-secondary)] mb-6">
-                    Victoria, British Columbia, Canada
-                  </p>
-                  <div className="flex gap-4 justify-center md:justify-start">
-                    <a href="mailto:absolondesigns@gmail.com" target="_blank" rel="noopener noreferrer" className="px-4 py-2 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white rounded-md flex items-center gap-2 transition-all duration-300 ease-in-out hover:shadow-lg">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-5 h-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                      </svg>
-                      Email Me
-                    </a>
-                    <a href="https://www.linkedin.com/in/terence-absolon/" target="_blank" rel="noopener noreferrer" className="px-4 py-2 border border-[var(--card-border)] hover:bg-[var(--input-bg)] rounded-md flex items-center gap-2 hover:shadow-md">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 24 24" className="w-5 h-5">
-                        <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                      </svg>
-                      LinkedIn
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-        </section>
+      <main className="relative">
+        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+          <div className="page-blob page-blob-about-left" />
+          <div className="page-blob page-blob-about-right" />
+          <div className="page-blob page-blob-work-left" />
+          <div className="page-blob page-blob-work-mid" />
+          <div className="page-blob page-blob-work-right" />
+          <div className="page-blob page-blob-notes-left" />
+          <div className="page-blob page-blob-notes-right" />
+        </div>
+        <div className="relative z-10">
+        <ParallaxHero />
 
         {/* About Section */}
-        <section id="about" className="py-20 bg-[var(--section-bg)]">
+        <section id="about" className="py-20">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <h2 className="text-3xl font-bold mb-8 text-center">About me</h2>
               <div className="max-w-3xl mx-auto bg-[var(--card-bg)] p-8 rounded-lg shadow-md border border-[var(--card-border)]">
                 <p className="text-lg leading-relaxed text-[var(--text-primary)]">
-                  I&apos;m always looking for ways to grow—both professionally and personally. My goal is to find opportunities that push my design skills further while letting me thrive in a creative, dynamic environment. With a strong background in web development, production design, animation, I bring a mix of strategy, hands-on expertise, and a passion for making things that truly connect with people. Add in my ability to collaborate and communicate effectively, and I&apos;m confident in my ability to make an impact wherever I go.
+                  In my career and personal life, I&apos;m continuously on the lookout for new opportunities for development. Finding opportunities for creativity that allow me to grow as a designer in a stimulating, ever-changing setting is my top priority. I have extensive experience in web development, production design, and animation, and I am passionate about creating meaningful connections between people through a combination of strategy, practical knowledge, and my hands-on approach. When I consider my strengths in teamwork and communication, I am convinced that I can make a significant contribution in any setting where I am asked to do so.
                 </p>
               </div>
             </AnimatedSection>
           </div>
         </section>
 
-        {/* Projects Section */}
-        <section id="projects" className="py-20 container mx-auto px-4">
-          <AnimatedSection>
-            <h2 className="text-3xl font-bold mb-12 text-center">Some of my work</h2>
-          </AnimatedSection>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Project 1 */}
-            <AnimatedSection delay={100} className="h-full">
-            <Link href="https://noccareers.ca"
-              className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
-              <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
-                <div className="relative h-60 overflow-hidden">
-                  <Image
-                    src="preview_07.jpg"
-                    alt="NOC Careers"
-                    fill
-                    unoptimized
-                    style={{objectFit: "cover"}}
-                    className="group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                  />
-                </div>
-                <div className="p-6 flex flex-col h-[calc(100%-15rem)]">
-                  <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">NOC Careers</h3>
-                  <p className="text-[var(--text-secondary)] mb-4 flex-grow">
-                    Built a search site for Canada&apos;s Rural Community Immigration Pilot that surfaces priority NOCs and designated employers across participating communities. Design focused on a brand-led header, place photography, and clear Sora/Manrope typography; layout centers a filterable directory with community cards and result sorting; content keeps visitors oriented toward official portals rather than replacing them.
-                  </p>
-                  <p className="text-sm text-[var(--text-muted)] italic">React, Vite, n8n, Google Sheets, GitHub Pages</p>
-                </div>
-              </div>
-              </Link>
-            </AnimatedSection>
-
-            {/* Project 2 */}
-            <AnimatedSection delay={200} className="h-full">
-            <Link href="https://ledgerxtr.com/"
-              className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
-              <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
-                <div className="relative h-60 overflow-hidden">
-                  <Image
-                    src="preview_08.jpg"
-                    alt="LedgerXTR"
-                    fill
-                    unoptimized
-                    style={{objectFit: "cover"}}
-                    className="group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                  />
-                </div>
-                <div className="p-6 flex flex-col h-[calc(100%-15rem)]">
-                  <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">LedgerXTR</h3>
-                  <p className="text-[var(--text-secondary)] mb-4 flex-grow">
-                    Designed and built a single-page site for a bookkeeping brand focused on financial clarity for growing businesses. Design leans on a calm brand-led hero and photography that signals trust; layout moves visitors through services, process, FAQ, and a contact form in one scroll; content keeps messaging practical and leads route into Google Sheets and Outlook through n8n.
-                  </p>
-                  <p className="text-sm text-[var(--text-muted)] italic">React, Vite, TypeScript, n8n, Google Sheets, GitHub Pages</p>
-                </div>
-              </div>
-              </Link>
-            </AnimatedSection>
-
-            {/* Project 3 */}
-            <AnimatedSection delay={300} className="h-full">
-            <Link href="https://thurnix01.github.io/page_info_template_builder/"
-              className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
-              <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
-                <div className="relative h-60 overflow-hidden">
-                  <Image
-                    src="preview_04.jpg"
-                    alt="Performance Bicycle Email Builder"
-                    fill
-                    unoptimized
-                    style={{objectFit: "cover"}}
-                    className="group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                  />
-                </div>
-                <div className="p-6 flex flex-col h-[calc(100%-15rem)]">
-                  <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">Performance Bicycle Page Builder Template</h3>
-                  <p className="text-[var(--text-secondary)] mb-4 flex-grow">
-                    Creating this form, I focused on streamlining the process from the mockup stage of Performance Bicycle blog page in Figma, to live text in the form of HTML.
-                  </p>
-                  <p className="text-sm text-[var(--text-muted)] italic">HTML, Javascript, Figma</p>
-                </div>
-              </div>  
-              </Link>
-            </AnimatedSection>
-
-            {/* Project 4 */}
-            <AnimatedSection delay={400} className="h-full">
-            <Link href="https://www.performancebike.com/how-to-crush-your-first-gravel-race/cp1744"
-              className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
-              <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
-                <div className="relative h-60 overflow-hidden">
-                  <Image
-                    src="preview_05.jpg"
-                    alt="Responsive Page Design"
-                    fill
-                    unoptimized
-                    style={{objectFit: "cover"}}
-                    className="group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                  />
-                </div>
-                <div className="p-6 flex flex-col h-[calc(100%-15rem)]">
-                  <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">Responsive Page Design</h3>
-                  <p className="text-[var(--text-secondary)] mb-4 flex-grow">
-                    Designed a responsive page layout using HTML and CSS, for a client&apos;s website focusing on responsive navigation and layout.
-                  </p>
-                  <p className="text-sm text-[var(--text-muted)] italic">HTML, CSS, Javascript, Figma</p>
-                </div>
-              </div>
-              </Link>
-            </AnimatedSection>
-
-            {/* Project 5 */}
-            <AnimatedSection delay={500} className="h-full">
-            <Link href="https://www.behance.net/gallery/79189727/Washburn-Instagram-Ad"
-              className="block h-full focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] rounded-lg" target="_blank" rel="noopener noreferrer">
-              <div className="group bg-[var(--card-bg)] rounded-lg overflow-hidden shadow-md hover:shadow-xl transform hover:-translate-y-2 h-full border border-[var(--card-border)] transition-all duration-500 ease-in-out">
-                <div className="relative h-60 overflow-hidden">
-                  <Image
-                    src="preview_06.gif"
-                    alt="Social Media"
-                    fill
-                    unoptimized
-                    style={{objectFit: "cover"}}
-                    className="group-hover:scale-105 transition-transform duration-700 ease-in-out"
-                  />
-                </div>
-                <div className="p-6 flex flex-col h-[calc(100%-15rem)]">
-                  <h3 className="text-xl font-bold mb-2 text-[var(--text-primary)]">Social Media</h3>
-                  <p className="text-[var(--text-secondary)] mb-4 flex-grow">
-                  In this three-piece Instagram advert, I wanted to express what the product means to me with original photography, bright and vibrant color treatments, fresh typography and a cool animation.
-                  </p>
-                  <p className="text-sm text-[var(--text-muted)] italic">HTML, Figma, Photoshop</p>
-                </div>
-              </div>
-              </Link>
-            </AnimatedSection>
-          </div>
-          
-          <AnimatedSection delay={600}>
-            <div className="text-center mt-12">
-              <a href="https://www.behance.net/absolondesigns" target="_blank" rel="noopener noreferrer" className="inline-block px-6 py-3 bg-[var(--primary)] hover:bg-[var(--primary-hover)] text-white rounded-md transition-all duration-300 ease-in-out hover:shadow-lg transform hover:scale-105">
-                View more projects
-              </a>
-            </div>
-          </AnimatedSection>
-        </section>
+        <ProjectGallery />
 
         {/* Testimonial Section */}
         <section id="testimonial" className="py-12">
@@ -395,6 +208,7 @@ export default function Home() {
             </AnimatedSection>
           </div>
         </section>*/}
+        </div>
       </main>
 
       {/* Footer */}

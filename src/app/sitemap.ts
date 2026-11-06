@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { projects } from "@/data/projects";
 
 const siteUrl = "https://absolondesigns.com";
 
@@ -38,5 +39,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    ...projects.map((project) => ({
+      url: `${siteUrl}/work/${project.slug}/`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 }

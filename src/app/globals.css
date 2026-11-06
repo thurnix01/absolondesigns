@@ -58,6 +58,142 @@ body {
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
+.parallax-hero {
+  --scroll: 0;
+  --mx: 0;
+  --my: 0;
+  min-height: 88vh;
+  display: flex;
+  align-items: center;
+}
+
+.parallax-orb,
+.parallax-grid,
+.parallax-copy,
+.parallax-portrait {
+  will-change: transform;
+}
+
+.parallax-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(42px);
+  pointer-events: none;
+}
+
+.parallax-orb-a {
+  width: 28rem;
+  height: 28rem;
+  left: -8rem;
+  top: 8%;
+  background: color-mix(in srgb, var(--primary) 42%, transparent);
+  transform: translate3d(calc(var(--mx) * 28px), calc(var(--scroll) * -90px + var(--my) * 18px), 0);
+}
+
+.parallax-orb-b {
+  width: 22rem;
+  height: 22rem;
+  right: -6rem;
+  bottom: 4%;
+  background: color-mix(in srgb, var(--accent) 48%, transparent);
+  transform: translate3d(calc(var(--mx) * -34px), calc(var(--scroll) * -150px + var(--my) * -14px), 0);
+}
+
+.parallax-grid {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, color-mix(in srgb, var(--text-muted) 40%, transparent) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(to bottom, black, transparent 80%);
+  opacity: 0.35;
+  pointer-events: none;
+  transform: translateY(calc(var(--scroll) * 48px));
+}
+
+.parallax-copy {
+  transform: translateY(calc(var(--scroll) * -28px));
+}
+
+.parallax-portrait {
+  transform: translate3d(calc(var(--mx) * 12px), calc(var(--scroll) * -40px + var(--my) * 10px), 0);
+}
+
+.page-blob {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(72px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-blob-about-left {
+  width: 32rem;
+  height: 32rem;
+  left: -12rem;
+  top: 16%;
+  background: color-mix(in srgb, var(--primary) 42%, transparent);
+}
+
+.page-blob-about-right {
+  width: 28rem;
+  height: 28rem;
+  right: -10rem;
+  top: 24%;
+  background: color-mix(in srgb, var(--accent) 46%, transparent);
+}
+
+.page-blob-work-left {
+  width: 34rem;
+  height: 34rem;
+  left: -14rem;
+  top: 42%;
+  background: color-mix(in srgb, var(--accent) 36%, transparent);
+}
+
+.page-blob-work-mid {
+  width: 26rem;
+  height: 26rem;
+  left: 36%;
+  top: 56%;
+  background: color-mix(in srgb, var(--primary) 28%, transparent);
+}
+
+.page-blob-work-right {
+  width: 32rem;
+  height: 32rem;
+  right: -12rem;
+  top: 68%;
+  background: color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+.page-blob-notes-left {
+  width: 28rem;
+  height: 28rem;
+  left: -10rem;
+  top: 82%;
+  background: color-mix(in srgb, var(--primary) 34%, transparent);
+}
+
+.page-blob-notes-right {
+  width: 24rem;
+  height: 24rem;
+  right: -8rem;
+  top: 90%;
+  background: color-mix(in srgb, var(--accent) 38%, transparent);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .parallax-orb,
+  .parallax-grid,
+  .parallax-copy,
+  .parallax-portrait,
+  .page-blob,
+  .group:hover {
+    transform: none !important;
+    transition: none !important;
+  }
+}
+
 /* Keep navbar logo legible: invert in light mode only */
 img[alt="Absolon Designs Logo"] {
   filter: invert(1);
