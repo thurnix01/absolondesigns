@@ -89,24 +89,23 @@ export default function PhotoGrid({
   const rows = packRows(assets);
 
   return (
-    <div className="flex flex-col gap-2 md:gap-3">
+    <div className="grid grid-cols-2 gap-2 md:flex md:flex-col md:gap-3">
       {rows.map((row) => {
         const onlyWide = row.every((tile) => tile.kind === "wide");
         const enlargeTalls = row.every((tile) => tile.kind === "tall") && row.length === 2;
         return (
-          <div key={row[0].src} className="grid grid-cols-2 items-stretch gap-2 md:grid-cols-4 md:gap-3">
+          <div key={row[0].src} className="contents md:grid md:grid-cols-4 md:items-stretch md:gap-3">
             {row.map((tile) => {
-              const span =
+              const desktop =
                 tile.kind === "pano"
-                  ? "col-span-2 md:col-span-4"
+                  ? "md:col-span-4 md:aspect-auto"
                   : tile.kind === "wide"
-                    ? "col-span-2"
+                    ? onlyWide
+                      ? "md:col-span-2 md:aspect-[3/2]"
+                      : "md:col-span-2 md:aspect-auto md:h-full"
                     : enlargeTalls
-                      ? "col-span-1 aspect-[2/3] md:col-span-2"
-                      : "col-span-1 aspect-[2/3]";
-              const wideFrame = onlyWide
-                ? "aspect-[3/2]"
-                : "aspect-[3/2] md:aspect-auto md:h-full";
+                      ? "md:col-span-2 md:aspect-[2/3]"
+                      : "md:col-span-1 md:aspect-[2/3]";
 
               return (
                 <a
@@ -114,9 +113,7 @@ export default function PhotoGrid({
                   href={tile.src}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className={`group relative block overflow-hidden rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] ${span} ${
-                    tile.kind === "wide" ? wideFrame : ""
-                  }`}
+                  className={`group relative col-span-1 block aspect-[3/4] overflow-hidden rounded-xl border border-[var(--card-border)] bg-[var(--card-bg)] ${desktop}`}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
@@ -124,7 +121,7 @@ export default function PhotoGrid({
                     alt={`${title} photograph ${fileName(tile.src).replace(".jpg", "")}`}
                     className={
                       tile.kind === "pano"
-                        ? "h-auto w-full"
+                        ? "absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03] md:static md:h-auto"
                         : "absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                     }
                   />
