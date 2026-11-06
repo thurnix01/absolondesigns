@@ -26,6 +26,10 @@ function fileName(src: string) {
   return src.split("/").pop() ?? src;
 }
 
+function thumbSrc(src: string) {
+  return `/work/photography/thumbs/${fileName(src)}`;
+}
+
 function kindFor(src: string): PhotoKind {
   const name = fileName(src);
   if (name === "06.jpg") return "pano";
@@ -87,6 +91,7 @@ export default function PhotoGrid({
   title: string;
 }) {
   const rows = packRows(assets);
+  let photoIndex = 0;
 
   return (
     <div className="grid grid-cols-2 gap-2 md:flex md:flex-col md:gap-3">
@@ -96,6 +101,8 @@ export default function PhotoGrid({
         return (
           <div key={row[0].src} className="contents md:grid md:grid-cols-4 md:items-stretch md:gap-3">
             {row.map((tile) => {
+              const eager = photoIndex < 4;
+              photoIndex += 1;
               const desktop =
                 tile.kind === "pano"
                   ? "md:col-span-4 md:aspect-auto"
@@ -117,8 +124,11 @@ export default function PhotoGrid({
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
-                    src={tile.src}
+                    src={thumbSrc(tile.src)}
                     alt={`${title} photograph ${fileName(tile.src).replace(".jpg", "")}`}
+                    loading={eager ? "eager" : "lazy"}
+                    decoding="async"
+                    fetchPriority={eager ? "high" : "low"}
                     className={
                       tile.kind === "pano"
                         ? "absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-[1.03] md:static md:h-auto"

@@ -120,6 +120,16 @@ body {
   transform: translate3d(calc(var(--mx) * 12px), calc(var(--scroll) * -40px + var(--my) * 10px), 0);
 }
 
+@media (hover: hover) {
+  .parallax-portrait img {
+    transition: filter 0.35s ease;
+  }
+
+  .parallax-portrait:hover img {
+    filter: grayscale(1) brightness(0.82);
+  }
+}
+
 .page-blob {
   position: absolute;
   border-radius: 999px;

@@ -54,7 +54,7 @@ export default function ParallaxHero() {
         <div className="parallax-copy mx-auto flex max-w-5xl flex-col items-center gap-10 md:flex-row md:items-center">
           <div className="parallax-portrait relative h-64 w-64 shrink-0 overflow-hidden rounded-full border-4 border-[var(--card-border)] shadow-lg sm:h-72 sm:w-72 md:h-80 md:w-80 lg:h-96 lg:w-96">
             <Image
-              src="/profile.png"
+              src="/profile-display.jpg"
               alt="Terence Absolon"
               fill
               unoptimized
