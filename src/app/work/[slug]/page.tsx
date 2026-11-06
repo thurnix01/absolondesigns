@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import PhotoGrid from "@/components/PhotoGrid";
 import ThemeToggle from "@/components/ThemeToggle";
 import extras from "@/data/behance-extras.json";
 import { categoryLabels, getProject, projects } from "@/data/projects";
@@ -77,7 +78,11 @@ export default async function WorkPage({ params }: PageProps) {
         </div>
       </header>
 
-      <main className="container mx-auto max-w-5xl flex-1 px-4 py-12 md:py-16">
+      <main
+        className={`container mx-auto flex-1 px-4 py-12 md:py-16 ${
+          project.slug === "photography" ? "max-w-6xl" : "max-w-5xl"
+        }`}
+      >
         <p className="mb-3 text-sm font-semibold uppercase tracking-[0.18em] text-[var(--primary)]">
           {categoryLabels[project.category]}
         </p>
@@ -145,19 +150,23 @@ export default async function WorkPage({ params }: PageProps) {
             <h2 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--text-muted)]">
               Project assets
             </h2>
-            <div className="flex flex-col gap-6">
-              {assets.map((src, assetIndex) => (
-                <a key={src} href={src} target="_blank" rel="noopener noreferrer">
-                  {/* Full Behance modules, not cropped cards */}
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={src}
-                    alt={`${project.title} asset ${assetIndex + 1}`}
-                    className="w-full rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)]"
-                  />
-                </a>
-              ))}
-            </div>
+            {project.slug === "photography" ? (
+              <PhotoGrid assets={assets} title={project.title} />
+            ) : (
+              <div className="flex flex-col gap-6">
+                {assets.map((src, assetIndex) => (
+                  <a key={src} href={src} target="_blank" rel="noopener noreferrer">
+                    {/* Full Behance modules, not cropped cards */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={src}
+                      alt={`${project.title} asset ${assetIndex + 1}`}
+                      className="w-full rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)]"
+                    />
+                  </a>
+                ))}
+              </div>
+            )}
           </section>
         ) : null}
         <div className="mt-8">
