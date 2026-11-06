@@ -72,7 +72,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="relative">
+      <main className="relative overflow-x-clip">
         <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
           <div className="page-blob page-blob-about-left" />
           <div className="page-blob page-blob-about-right" />
@@ -86,7 +86,7 @@ export default function Home() {
         <ParallaxHero />
 
         {/* About Section */}
-        <section id="about" className="py-20">
+        <section id="about" className="py-8 md:py-10">
           <div className="container mx-auto px-4">
             <AnimatedSection>
               <h2 className="text-3xl font-bold mb-8 text-center">About me</h2>

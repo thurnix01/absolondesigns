@@ -18,20 +18,49 @@ const filters: Array<ProjectCategory | "all"> = [
   "photo",
 ];
 
+const mixOrder: ProjectCategory[] = ["web", "brand", "print", "motion"];
+
+function mixProjects(list: typeof projects) {
+  const buckets = new Map<ProjectCategory, typeof projects>();
+  for (const project of list) {
+    const bucket = buckets.get(project.category) ?? [];
+    bucket.push(project);
+    buckets.set(project.category, bucket);
+  }
+
+  const mixed: typeof projects = [];
+  let tookOne = true;
+  while (tookOne) {
+    tookOne = false;
+    for (const category of mixOrder) {
+      const next = buckets.get(category)?.shift();
+      if (next) {
+        mixed.push(next);
+        tookOne = true;
+      }
+    }
+  }
+
+  for (const bucket of buckets.values()) {
+    mixed.push(...bucket);
+  }
+  return mixed;
+}
+
 export default function ProjectGallery() {
   const [filter, setFilter] = useState<ProjectCategory | "all">("all");
   const visible = useMemo(
     () =>
       filter === "all"
-        ? projects
+        ? mixProjects(projects)
         : projects.filter((project) => project.category === filter),
     [filter],
   );
 
   return (
-    <section id="projects" className="py-20">
+    <section id="projects" className="overflow-x-clip py-8 md:py-12">
       <div className="container mx-auto px-4">
-      <div className="mx-auto mb-10 max-w-2xl text-center">
+      <div className="mx-auto mb-6 max-w-2xl text-center">
         <p className="mb-2 text-sm font-semibold uppercase tracking-[0.22em] text-[var(--primary)]">
           Portfolio
         </p>

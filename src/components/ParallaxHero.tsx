@@ -50,7 +50,7 @@ export default function ParallaxHero() {
       <div className="parallax-orb parallax-orb-b" aria-hidden="true" />
       <div className="parallax-grid" aria-hidden="true" />
 
-      <div className="container relative mx-auto px-4 py-20 md:py-28">
+      <div className="container relative mx-auto px-4 py-10 md:py-14">
         <div className="parallax-copy mx-auto flex max-w-5xl flex-col items-center gap-10 md:flex-row md:items-center">
           <div className="parallax-portrait relative h-64 w-64 shrink-0 overflow-hidden rounded-full border-4 border-[var(--card-border)] shadow-lg sm:h-72 sm:w-72 md:h-80 md:w-80 lg:h-96 lg:w-96">
             <Image
