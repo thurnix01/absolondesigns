@@ -62,6 +62,15 @@ body {
   overflow-x: clip;
 }
 
+/* Offset sticky header only — keep this tight to the header height */
+#home,
+#about,
+#projects,
+#testimonial,
+#contact {
+  scroll-margin-top: 4rem;
+}
+
 .parallax-hero {
   --scroll: 0;
   --mx: 0;

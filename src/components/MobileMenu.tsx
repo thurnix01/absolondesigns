@@ -1,162 +1,193 @@
-'use client';
+"use client";
 
-import { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { useTheme } from './ThemeProvider';
+import { useState, useEffect, useRef, useCallback } from "react";
+import { createPortal } from "react-dom";
+import Link from "next/link";
+import { useTheme } from "./ThemeProvider";
+
+type BubblePos = { top: number };
+
+const links = [
+  { href: "/#home", label: "Home" },
+  { href: "/#about", label: "About" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/card/", label: "QR Card" },
+  {
+    href: "https://thurnix01.github.io/absolondesigns_old/pages/resume.html",
+    label: "Resume",
+    external: true,
+  },
+] as const;
 
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const [bubblePos, setBubblePos] = useState<BubblePos>({ top: 64 });
   const { theme } = useTheme();
+  const toggleRef = useRef<HTMLButtonElement>(null);
 
-  const navBackground = theme === 'dark' ? '#0f182af0' : '#f0f0f0f0';
-  const backdropBackground = theme === 'dark' ? '#0f182a' : '#f0f0f0f0';
+  const bubbleBg =
+    theme === "dark" ? "rgba(30, 41, 59, 0.94)" : "rgba(255, 255, 255, 0.96)";
+  const bubbleBorder =
+    theme === "dark" ? "rgba(255, 255, 255, 0.12)" : "rgba(0, 0, 0, 0.08)";
 
-  // Close menu when clicking outside or pressing escape
+  const placeBubble = useCallback(() => {
+    const toggle = toggleRef.current;
+    if (!toggle) return;
+    const rect = toggle.getBoundingClientRect();
+    const top = Math.min(
+      Math.max(rect.bottom + 10, 12),
+      window.innerHeight - 280,
+    );
+    setBubblePos({ top });
+  }, []);
+
   useEffect(() => {
-    const handleEscape = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsOpen(false);
-    };
+    setMounted(true);
+  }, []);
 
-    const handleClickOutside = (e: MouseEvent) => {
+  useEffect(() => {
+    if (!isOpen) return;
+    placeBubble();
+    // Fixed coords stay in the viewport while the page scrolls underneath
+    const onResize = () => placeBubble();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, [isOpen, placeBubble]);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleEscape = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    const handlePointerDown = (e: MouseEvent | TouchEvent) => {
       const target = e.target as HTMLElement;
-      if (!target.closest('#mobile-menu') && !target.closest('#menu-toggle')) {
+      if (!target.closest("#mobile-menu") && !target.closest("#menu-toggle")) {
         setIsOpen(false);
       }
     };
 
-    document.addEventListener('keydown', handleEscape);
-    document.addEventListener('mousedown', handleClickOutside);
-
+    document.addEventListener("keydown", handleEscape);
+    document.addEventListener("mousedown", handlePointerDown);
+    document.addEventListener("touchstart", handlePointerDown);
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.removeEventListener('mousedown', handleClickOutside);
-    };
-  }, []);
-
-  // Prevent scrolling when menu is open
-  useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    
-    return () => {
-      document.body.style.overflow = '';
+      document.removeEventListener("keydown", handleEscape);
+      document.removeEventListener("mousedown", handlePointerDown);
+      document.removeEventListener("touchstart", handlePointerDown);
     };
   }, [isOpen]);
 
+  const closeMenu = () => setIsOpen(false);
   const toggleMenu = () => {
-    setIsOpen(!isOpen);
+    setIsOpen((open) => {
+      if (!open) placeBubble();
+      return !open;
+    });
   };
 
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
+  const menu = (
+    <div
+      id="mobile-menu"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Site navigation"
+      className={`fixed left-8 right-8 z-[100] origin-top md:hidden ${
+        isOpen
+          ? "pointer-events-auto visible scale-100 opacity-100"
+          : "pointer-events-none invisible scale-95 opacity-0"
+      }`}
+      style={{
+        top: bubblePos.top,
+        transition:
+          "opacity 220ms ease, transform 280ms cubic-bezier(0.22, 1, 0.36, 1), visibility 220ms",
+      }}
+    >
+      <div
+        className="relative overflow-hidden rounded-[1.75rem] border shadow-2xl backdrop-blur-xl"
+        style={{
+          backgroundColor: bubbleBg,
+          borderColor: bubbleBorder,
+          boxShadow:
+            theme === "dark"
+              ? "0 18px 50px rgba(0,0,0,0.45), 0 0 0 1px rgba(255,255,255,0.04)"
+              : "0 18px 50px rgba(15,23,42,0.18), 0 0 0 1px rgba(255,255,255,0.6)",
+        }}
+      >
+        <div
+          className="pointer-events-none absolute -right-6 -top-6 h-24 w-24 rounded-full opacity-50"
+          style={{
+            background:
+              "radial-gradient(circle, color-mix(in srgb, var(--primary) 45%, transparent), transparent 70%)",
+          }}
+          aria-hidden="true"
+        />
+
+        <p className="relative px-4 pb-1 pt-4 text-xs font-semibold uppercase tracking-[0.18em] text-[var(--text-muted)]">
+          Menu
+        </p>
+
+        <nav className="relative flex flex-col gap-1 px-2 pb-3">
+          {links.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              {...("external" in link && link.external
+                ? { target: "_blank", rel: "noopener noreferrer" }
+                : {})}
+              className="rounded-2xl px-4 py-3 text-lg font-semibold text-[var(--text-primary)] transition hover:bg-[var(--input-bg)] hover:text-[var(--primary)] active:scale-[0.98]"
+              onClick={closeMenu}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </nav>
+      </div>
+    </div>
+  );
 
   return (
     <>
-      <button 
+      <button
+        ref={toggleRef}
         id="menu-toggle"
-        className="md:hidden p-2 rounded-md hover:bg-[var(--input-bg)] transition-all duration-300 ease-in-out"
+        type="button"
+        className="rounded-md p-2 transition-all duration-300 ease-in-out hover:bg-[var(--input-bg)] md:hidden"
         onClick={toggleMenu}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
-        aria-label={isOpen ? 'Close menu' : 'Open menu'}
+        aria-label={isOpen ? "Close menu" : "Open menu"}
       >
         {isOpen ? (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-[var(--text-primary)] transition-transform duration-300 ease-in-out">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="h-6 w-6 text-[var(--text-primary)]"
+          >
             <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
           </svg>
         ) : (
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-[var(--text-primary)] transition-transform duration-300 ease-in-out">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={2}
+            stroke="currentColor"
+            className="h-6 w-6 text-[var(--text-primary)]"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"
+            />
           </svg>
         )}
       </button>
-      
-      {/* Mobile Menu Overlay */}
-      <div 
-        id="mobile-menu"
-        className={`fixed inset-0 z-50 md:hidden transition-all duration-300 ease-in-out ${
-          isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-        }`}
-      >
-        {/* Backdrop */}
-        <div 
-          className="absolute inset-0 backdrop-blur-sm"
-          style={{
-            backgroundColor: backdropBackground,
-          }}
-          onClick={closeMenu}
-        />
-        
-        {/* Menu Content */}
-        <div 
-          className={`relative z-10 flex flex-col h-full transition-all duration-500 ease-in-out ${
-            isOpen ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
-          }`}
-        >
-          {/* Close Button */}
-          <div className="flex justify-end p-4">
-            <button
-              onClick={closeMenu}
-              className="p-2 rounded-md hover:bg-[var(--input-bg)] transition-all duration-300 ease-in-out"
-              aria-label="Close menu"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-6 h-6 text-[var(--text-primary)]">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              </svg>
-            </button>
-          </div>
 
-          {/* Navigation Links */}
-          <nav 
-            className="flex-1 flex flex-col items-center justify-center px-4 space-y-6"
-            style={{
-              backgroundColor: navBackground,
-            }}
-          >
-            <Link 
-              href="/#home" 
-              className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
-              onClick={closeMenu}
-            >
-              Home
-            </Link>
-            <Link 
-              href="/#about" 
-              className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
-              onClick={closeMenu}
-            >
-              About
-            </Link>
-            <Link 
-              href="/#projects" 
-              className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
-              onClick={closeMenu}
-            >
-              Projects
-            </Link>
-            <Link 
-              href="/card/" 
-              className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
-              onClick={closeMenu}
-            >
-              QR Card
-            </Link>
-            <Link 
-              href="https://thurnix01.github.io/absolondesigns_old/pages/resume.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full text-center py-4 text-2xl font-semibold text-[var(--text-primary)] hover:text-[var(--primary)] transition-all duration-300 ease-in-out border-b border-[var(--card-border)] active:bg-[var(--input-bg)] rounded-md"
-              onClick={closeMenu}
-            >
-              Resume
-            </Link>
-          </nav>
-        </div>
-      </div>
+      {mounted ? createPortal(menu, document.body) : null}
     </>
   );
-} 
+}
