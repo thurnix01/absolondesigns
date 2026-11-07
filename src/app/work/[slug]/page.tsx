@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PhotoGrid from "@/components/PhotoGrid";
+import SiteLogo from "@/components/SiteLogo";
 import ThemeToggle from "@/components/ThemeToggle";
 import extras from "@/data/behance-extras.json";
 import { categoryLabels, getProject, projects } from "@/data/projects";
@@ -60,14 +61,7 @@ export default async function WorkPage({ params }: PageProps) {
       <header className="sticky top-0 z-50 border-b border-[var(--card-border)] bg-[var(--header-bg)] backdrop-blur-md">
         <div className="container mx-auto flex items-center justify-between px-4 py-4">
           <Link href="/#home" className="flex items-center gap-4">
-            <Image
-              src="/absolon_designs_logo_blk_edit.gif"
-              alt="Absolon Designs Logo"
-              width={70}
-              height={70}
-              priority
-              className="rounded-full invert transition-[filter] duration-300 dark:invert-0"
-            />
+            <SiteLogo priority />
             <span className="hidden text-lg font-bold sm:block">Absolon Designs</span>
           </Link>
           <div className="flex items-center gap-4 text-sm">

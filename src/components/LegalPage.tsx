@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import SiteLogo from "./SiteLogo";
 
 type LegalPageProps = {
   title: string;
@@ -14,13 +14,7 @@ export default function LegalPage({ title, children }: LegalPageProps) {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-4">
             <div className="h-10 relative">
-              <Image
-                src="/absolon_designs_logo_blk_edit.gif"
-                alt="Absolon Designs Logo"
-                width={70}
-                height={70}
-                className="rounded-full invert dark:invert-0 transition-[filter] duration-300 ease-in-out"
-              />
+              <SiteLogo />
             </div>
             <span className="text-lg font-bold hidden sm:block">
               Absolon Designs

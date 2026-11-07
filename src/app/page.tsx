@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import ThemeToggle from "../components/ThemeToggle";
@@ -6,6 +5,7 @@ import MobileMenu from "../components/MobileMenu";
 import AnimatedSection from "../components/AnimatedSection";
 import ParallaxHero from "../components/ParallaxHero";
 import ProjectGallery from "../components/ProjectGallery";
+import SiteLogo from "../components/SiteLogo";
 
 export const metadata: Metadata = {
   title: "Absolon Designs - Graphic Designer & Front-End Developer",
@@ -46,14 +46,7 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/#home" className="flex items-center gap-4">
             <div className="h-10 relative">
-              <Image
-                src="absolon_designs_logo_blk_edit.gif"
-                alt="Absolon Designs Logo"
-                width={70}
-                height={70}
-                priority
-                className="rounded-full invert dark:invert-0 transition-[filter] duration-300 ease-in-out"
-              />
+              <SiteLogo priority />
             </div>
             <span className="text-lg font-bold hidden sm:block">Absolon Designs</span>
           </Link>
