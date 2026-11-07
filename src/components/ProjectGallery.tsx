@@ -119,7 +119,7 @@ export default function ProjectGallery() {
             <div className="p-3 sm:p-6">
               <h3 className="mb-1 text-sm font-bold sm:mb-2 sm:text-xl">{project.title}</h3>
               <p className="hidden line-clamp-3 text-[var(--text-secondary)] sm:block">{project.description}</p>
-              <p className="mt-2 line-clamp-1 text-xs text-[var(--text-muted)] sm:mt-4 sm:text-sm">{project.tools.join(" · ")}</p>
+              <p className="line-clamp-1 text-xs text-[var(--text-muted)] sm:mt-4 sm:text-sm">{project.tools.join(" · ")}</p>
             </div>
           </Link>
         ))}

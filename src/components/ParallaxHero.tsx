@@ -70,7 +70,7 @@ export default function ParallaxHero() {
             </p>
             <h1 className="mb-4 bg-gradient-to-r from-blue-500 to-[var(--accent)] bg-clip-text text-4xl font-bold text-transparent md:text-6xl">
               Terence Absolon
-              <span className="mt-2 block">Digital Designer & Front-End Developer</span>
+              <span className="block">Digital Designer & Front-End Developer</span>
             </h1>
             <p className="mx-auto mb-8 max-w-xl text-lg text-[var(--text-secondary)] md:mx-0">
               Brand, print, motion, and websites — reviewed here, without sending you off to another portfolio.
