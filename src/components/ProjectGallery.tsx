@@ -82,7 +82,7 @@ export default function ProjectGallery() {
               onClick={() => setFilter(key)}
               className={`rounded-full px-4 py-2 text-sm transition ${
                 active
-                  ? "bg-[var(--primary)] text-white"
+                  ? "bg-[var(--primary-fill)] text-white"
                   : "border border-[var(--card-border)] text-[var(--text-secondary)] hover:bg-[var(--input-bg)]"
               }`}
             >

@@ -126,7 +126,7 @@ export default async function WorkPage({ params }: PageProps) {
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block rounded-full bg-[var(--primary)] px-5 py-2.5 text-white hover:bg-[var(--primary-hover)]"
+                    className="inline-block rounded-full bg-[var(--primary-fill)] px-5 py-2.5 text-white hover:brightness-90"
                   >
                     {link.label}
                   </a>

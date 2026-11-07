@@ -54,11 +54,12 @@ export default function ParallaxHero() {
         <div className="parallax-copy mx-auto flex max-w-5xl flex-col items-center gap-10 md:flex-row md:items-center">
           <div className="parallax-portrait relative h-64 w-64 shrink-0 overflow-hidden rounded-full border-4 border-[var(--card-border)] shadow-lg sm:h-72 sm:w-72 md:h-80 md:w-80 lg:h-96 lg:w-96">
             <Image
-              src="/profile-display.jpg"
+              src="/profile-display.webp"
               alt="Terence Absolon"
               fill
               unoptimized
               priority
+              fetchPriority="high"
               sizes="(max-width: 640px) 16rem, (max-width: 768px) 18rem, (max-width: 1024px) 20rem, 24rem"
               className="object-cover"
             />
@@ -77,7 +78,7 @@ export default function ParallaxHero() {
             <div className="flex flex-wrap justify-center gap-3 md:justify-start">
               <a
                 href="#projects"
-                className="rounded-full bg-[var(--primary)] px-5 py-2.5 text-white transition hover:bg-[var(--primary-hover)] hover:shadow-lg"
+                className="rounded-full bg-[var(--primary-fill)] px-5 py-2.5 text-white transition hover:brightness-90 hover:shadow-lg"
               >
                 See the work
               </a>
