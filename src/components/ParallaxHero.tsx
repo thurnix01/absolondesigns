@@ -59,6 +59,7 @@ export default function ParallaxHero() {
               fill
               unoptimized
               priority
+              sizes="(max-width: 640px) 16rem, (max-width: 768px) 18rem, (max-width: 1024px) 20rem, 24rem"
               className="object-cover"
             />
           </div>

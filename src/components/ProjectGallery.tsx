@@ -92,7 +92,7 @@ export default function ProjectGallery() {
         })}
       </div>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-2 gap-3 md:gap-6 xl:grid-cols-3">
         {visible.map((project, index) => (
           <Link
             key={project.slug}
@@ -101,22 +101,25 @@ export default function ProjectGallery() {
               index === 0 && filter === "all" ? "md:col-span-2 xl:col-span-2" : ""
             }`}
           >
-            <div className="relative h-64 overflow-hidden md:h-72">
+            <div className="relative h-32 overflow-hidden sm:h-48 md:h-72">
               <Image
                 src={project.image}
                 alt={project.imageAlt}
                 fill
                 unoptimized
+                loading="lazy"
+                decoding="async"
+                sizes="(max-width: 768px) 50vw, (max-width: 1280px) 50vw, 33vw"
                 className="object-cover transition duration-700 group-hover:scale-105"
               />
-              <span className="absolute left-4 top-4 rounded-full bg-black/55 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+              <span className="absolute left-2 top-2 rounded-full bg-black/55 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white sm:left-4 sm:top-4 sm:px-3 sm:py-1 sm:text-xs">
                 {categoryLabels[project.category]}
               </span>
             </div>
-            <div className="p-6">
-              <h3 className="mb-2 text-xl font-bold">{project.title}</h3>
-              <p className="line-clamp-3 text-[var(--text-secondary)]">{project.description}</p>
-              <p className="mt-4 text-sm text-[var(--text-muted)]">{project.tools.join(" · ")}</p>
+            <div className="p-3 sm:p-6">
+              <h3 className="mb-1 text-sm font-bold sm:mb-2 sm:text-xl">{project.title}</h3>
+              <p className="hidden line-clamp-3 text-[var(--text-secondary)] sm:block">{project.description}</p>
+              <p className="mt-2 line-clamp-1 text-xs text-[var(--text-muted)] sm:mt-4 sm:text-sm">{project.tools.join(" · ")}</p>
             </div>
           </Link>
         ))}
