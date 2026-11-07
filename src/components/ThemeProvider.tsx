@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import { createContext, useContext, useEffect, useState, ReactNode } from "react";
+import { createContext, useContext, useEffect, useState, ReactNode } from 'react';
 
-type Theme = "light" | "dark";
+type Theme = 'light' | 'dark';
 
 type ThemeContextType = {
   theme: Theme;
@@ -11,31 +11,42 @@ type ThemeContextType = {
 
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-function applyThemeClass(next: Theme) {
-  document.documentElement.classList.toggle("dark", next === "dark");
-}
-
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>('light');
 
+  // This effect runs only on the client after hydration
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    const initialTheme: Theme =
-      savedTheme === "dark" || savedTheme === "light" ? savedTheme : "dark";
-
-    if (!savedTheme) {
-      localStorage.setItem("theme", initialTheme);
+    // Remove any server-side injected dark class to prevent hydration mismatch
+    document.documentElement.classList.remove('dark');
+    
+    const savedTheme = localStorage.getItem('theme') as Theme | null;
+    
+    let initialTheme: Theme;
+    if (savedTheme) {
+      initialTheme = savedTheme;
+    } else {
+      initialTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      localStorage.setItem('theme', initialTheme);
     }
-
+    
     setTheme(initialTheme);
-    applyThemeClass(initialTheme);
+    
+    if (initialTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    }
   }, []);
 
   const toggleTheme = () => {
-    const newTheme: Theme = theme === "light" ? "dark" : "light";
+    const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    applyThemeClass(newTheme);
-    localStorage.setItem("theme", newTheme);
+    
+    if (newTheme === 'dark') {
+      document.documentElement.classList.add('dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+    }
+    
+    localStorage.setItem('theme', newTheme);
   };
 
   return (
@@ -48,7 +59,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
 export function useTheme() {
   const context = useContext(ThemeContext);
   if (context === undefined) {
-    throw new Error("useTheme must be used within a ThemeProvider");
+    throw new Error('useTheme must be used within a ThemeProvider');
   }
   return context;
-}
+} 

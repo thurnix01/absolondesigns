@@ -50,26 +50,16 @@
 }
 
 html {
+  scroll-behavior: smooth;
   overflow-x: clip;
-}
-
-@media (min-width: 768px) {
-  html {
-    scroll-behavior: smooth;
-  }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: 'Inter', Arial, Helvetica, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
   overflow-x: clip;
-}
-
-@media (min-width: 768px) {
-  body {
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
 }
 
 .parallax-hero {
@@ -79,6 +69,13 @@ body {
   display: flex;
   align-items: center;
   overflow-x: clip;
+}
+
+.parallax-orb,
+.parallax-grid,
+.parallax-copy,
+.parallax-portrait {
+  will-change: transform;
 }
 
 .parallax-orb {
@@ -94,6 +91,7 @@ body {
   left: -8rem;
   top: 8%;
   background: color-mix(in srgb, var(--primary) 42%, transparent);
+  transform: translate3d(calc(var(--mx) * 28px), calc(var(--scroll) * -90px + var(--my) * 18px), 0);
 }
 
 .parallax-orb-b {
@@ -102,10 +100,10 @@ body {
   right: -6rem;
   bottom: 4%;
   background: color-mix(in srgb, var(--accent) 48%, transparent);
+  transform: translate3d(calc(var(--mx) * -34px), calc(var(--scroll) * -150px + var(--my) * -14px), 0);
 }
 
 .parallax-grid {
-  display: none;
   position: absolute;
   inset: 0;
   background-image: radial-gradient(circle, color-mix(in srgb, var(--text-muted) 40%, transparent) 1px, transparent 1px);
@@ -113,9 +111,18 @@ body {
   mask-image: linear-gradient(to bottom, black, transparent 80%);
   opacity: 0.35;
   pointer-events: none;
+  transform: translateY(calc(var(--scroll) * 48px));
 }
 
-@media (hover: hover) and (min-width: 768px) {
+.parallax-copy {
+  transform: translateY(calc(var(--scroll) * -28px));
+}
+
+.parallax-portrait {
+  transform: translate3d(calc(var(--mx) * 12px), calc(var(--scroll) * -40px + var(--my) * 10px), 0);
+}
+
+@media (hover: hover) {
   .parallax-portrait img {
     transition: filter 0.35s ease;
   }
@@ -131,40 +138,6 @@ body {
   filter: blur(72px);
   pointer-events: none;
   z-index: 0;
-}
-
-/* Parallax transforms stay desktop-only; blobs remain visible everywhere */
-@media (min-width: 768px) {
-  .parallax-grid {
-    display: block;
-  }
-
-  .parallax-orb,
-  .parallax-grid,
-  .parallax-copy,
-  .parallax-portrait {
-    will-change: transform;
-  }
-
-  .parallax-orb-a {
-    transform: translate3d(calc(var(--mx) * 28px), calc(var(--scroll) * -90px + var(--my) * 18px), 0);
-  }
-
-  .parallax-orb-b {
-    transform: translate3d(calc(var(--mx) * -34px), calc(var(--scroll) * -150px + var(--my) * -14px), 0);
-  }
-
-  .parallax-grid {
-    transform: translateY(calc(var(--scroll) * 48px));
-  }
-
-  .parallax-copy {
-    transform: translateY(calc(var(--scroll) * -28px));
-  }
-
-  .parallax-portrait {
-    transform: translate3d(calc(var(--mx) * 12px), calc(var(--scroll) * -40px + var(--my) * 10px), 0);
-  }
 }
 
 .page-blob-about-left {
@@ -224,28 +197,14 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .parallax-grid {
-    display: none !important;
-  }
-
   .parallax-orb,
   .parallax-grid,
   .parallax-copy,
   .parallax-portrait,
+  .page-blob,
   .group:hover {
     transform: none !important;
     transition: none !important;
-    will-change: auto !important;
-  }
-}
-
-@media (max-width: 767px) {
-  img[alt="Absolon Designs Logo"] {
-    transition: none;
   }
 }
 
