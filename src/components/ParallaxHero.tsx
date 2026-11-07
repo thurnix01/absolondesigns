@@ -3,16 +3,18 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 
+const DESKTOP_MOTION = "(min-width: 768px) and (prefers-reduced-motion: no-preference)";
+
 export default function ParallaxHero() {
   const rootRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
 
+    const motionMq = window.matchMedia(DESKTOP_MOTION);
     let frame = 0;
+
     const update = () => {
       const rect = root.getBoundingClientRect();
       const progress = Math.min(1, Math.max(0, -rect.top / Math.max(rect.height, 1)));
@@ -30,13 +32,30 @@ export default function ParallaxHero() {
       root.style.setProperty("--my", y.toFixed(3));
     };
 
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    root.addEventListener("pointermove", onMove);
-    return () => {
+    const enable = () => {
+      update();
+      window.addEventListener("scroll", onScroll, { passive: true });
+      root.addEventListener("pointermove", onMove);
+    };
+    const disable = () => {
       cancelAnimationFrame(frame);
       window.removeEventListener("scroll", onScroll);
       root.removeEventListener("pointermove", onMove);
+      root.style.setProperty("--scroll", "0");
+      root.style.setProperty("--mx", "0");
+      root.style.setProperty("--my", "0");
+    };
+
+    const sync = () => {
+      disable();
+      if (motionMq.matches) enable();
+    };
+
+    sync();
+    motionMq.addEventListener("change", sync);
+    return () => {
+      motionMq.removeEventListener("change", sync);
+      disable();
     };
   }, []);
 

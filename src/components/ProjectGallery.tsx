@@ -97,7 +97,7 @@ export default function ProjectGallery() {
           <Link
             key={project.slug}
             href={`/work/${project.slug}/`}
-            className={`group block overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-md outline-none transition duration-500 hover:-translate-y-1 hover:shadow-xl focus-visible:ring-2 focus-visible:ring-[var(--accent)] ${
+            className={`group block overflow-hidden rounded-2xl border border-[var(--card-border)] bg-[var(--card-bg)] shadow-md outline-none md:transition md:duration-500 md:hover:-translate-y-1 md:hover:shadow-xl focus-visible:ring-2 focus-visible:ring-[var(--accent)] ${
               index === 0 && filter === "all" ? "md:col-span-2 xl:col-span-2" : ""
             }`}
           >
@@ -110,7 +110,7 @@ export default function ProjectGallery() {
                 loading="lazy"
                 decoding="async"
                 sizes="(max-width: 768px) 50vw, (max-width: 1280px) 50vw, 33vw"
-                className="object-cover transition duration-700 group-hover:scale-105"
+                className="object-cover md:transition md:duration-700 md:group-hover:scale-105"
               />
               <span className="absolute left-2 top-2 rounded-full bg-black/55 px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-white sm:left-4 sm:top-4 sm:px-3 sm:py-1 sm:text-xs">
                 {categoryLabels[project.category]}

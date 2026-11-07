@@ -58,7 +58,7 @@ export default function MobileMenu() {
     <>
       <button 
         id="menu-toggle"
-        className="md:hidden p-2 rounded-md hover:bg-[var(--input-bg)] transition-all duration-300 ease-in-out"
+        className="md:hidden p-2 rounded-md active:bg-[var(--input-bg)]"
         onClick={toggleMenu}
         aria-expanded={isOpen}
         aria-controls="mobile-menu"
