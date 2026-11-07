@@ -1,8 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import ThemeToggle from "@/components/ThemeToggle";
 import MobileMenu from "@/components/MobileMenu";
-import SiteLogo from "@/components/SiteLogo";
 
 export const metadata: Metadata = {
   title: "Hello — Absolon Designs",
@@ -65,7 +65,14 @@ export default function HelloPage() {
       <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--header-bg)] border-b border-[var(--card-border)]">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-4">
-            <SiteLogo width={40} height={40} priority />
+            <Image
+              src="/absolon_designs_logo_blk_edit.gif"
+              alt="Absolon Designs Logo"
+              width={40}
+              height={40}
+              unoptimized
+              className="rounded-full invert dark:invert-0 transition-[filter] duration-300 ease-in-out"
+            />
             <span className="text-lg font-bold">Absolon Designs</span>
           </Link>
           <div className="flex items-center gap-2">
