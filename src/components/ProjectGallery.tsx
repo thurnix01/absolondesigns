@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useLayoutEffect, useMemo, useRef, useState } from "react";
 import {
   categoryLabels,
   projects,
@@ -19,6 +19,9 @@ const filters: Array<ProjectCategory | "all"> = [
 ];
 
 const mixOrder: ProjectCategory[] = ["web", "brand", "print", "motion"];
+
+/** Match sticky header clearance used by #projects scroll-margin */
+const HEADER_OFFSET_PX = 64;
 
 function mixProjects(list: typeof projects) {
   const buckets = new Map<ProjectCategory, typeof projects>();
@@ -47,8 +50,17 @@ function mixProjects(list: typeof projects) {
   return mixed;
 }
 
+function alignPortfolioSection(section: HTMLElement | null) {
+  if (!section) return;
+  const top =
+    section.getBoundingClientRect().top + window.scrollY - HEADER_OFFSET_PX;
+  window.scrollTo({ top: Math.max(0, top), behavior: "smooth" });
+}
+
 export default function ProjectGallery() {
   const [filter, setFilter] = useState<ProjectCategory | "all">("all");
+  const sectionRef = useRef<HTMLElement>(null);
+  const shouldAlignRef = useRef(false);
   const visible = useMemo(
     () =>
       filter === "all"
@@ -57,8 +69,31 @@ export default function ProjectGallery() {
     [filter],
   );
 
+  useLayoutEffect(() => {
+    if (!shouldAlignRef.current) return;
+    shouldAlignRef.current = false;
+    // Wait a frame so the filtered grid has laid out before measuring
+    const id = window.requestAnimationFrame(() => {
+      alignPortfolioSection(sectionRef.current);
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [filter, visible.length]);
+
+  const selectFilter = (key: ProjectCategory | "all") => {
+    if (key === filter) {
+      alignPortfolioSection(sectionRef.current);
+      return;
+    }
+    shouldAlignRef.current = true;
+    setFilter(key);
+  };
+
   return (
-    <section id="projects" className="overflow-x-clip py-8 md:py-12">
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="overflow-x-clip py-8 md:py-12"
+    >
       <div className="container mx-auto px-4">
       <div className="mx-auto mb-6 max-w-2xl text-center">
         <p className="mb-2 text-sm font-semibold uppercase tracking-[0.22em] text-[var(--primary)]">
@@ -79,7 +114,7 @@ export default function ProjectGallery() {
               type="button"
               role="tab"
               aria-selected={active}
-              onClick={() => setFilter(key)}
+              onClick={() => selectFilter(key)}
               className={`rounded-full px-4 py-2 text-sm transition ${
                 active
                   ? "bg-[var(--primary-fill)] text-white"
