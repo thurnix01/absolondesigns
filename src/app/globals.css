@@ -217,7 +217,7 @@ body {
   }
 }
 
-/* Keep navbar logo legible: invert in light mode only */
+/* Black-bg white logo GIF: keep as-is in dark mode, invert for light mode */
 img[alt="Absolon Designs Logo"] {
   filter: invert(1);
   transition: filter 0.3s ease-in-out;

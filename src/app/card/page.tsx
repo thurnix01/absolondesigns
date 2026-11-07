@@ -48,12 +48,12 @@ export default function QrCardPage() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-4">
             <Image
-              src="/absolon_designs_logo_blk_edit.gif"
+              src="/absolon_designs_logo.webp"
               alt="Absolon Designs Logo"
-              width={70}
-              height={70}
+              width={80}
+              height={45}
               unoptimized
-              className="rounded-full invert dark:invert-0 transition-[filter] duration-300 ease-in-out"
+              className="h-10 w-auto object-contain"
             />
             <span className="text-lg font-bold hidden sm:block">Absolon Designs</span>
           </Link>

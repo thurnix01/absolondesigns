@@ -61,12 +61,13 @@ export default async function WorkPage({ params }: PageProps) {
         <div className="container mx-auto flex items-center justify-between px-4 py-4">
           <Link href="/#home" className="flex items-center gap-4">
             <Image
-              src="/absolon_designs_logo_blk_edit.gif"
+              src="/absolon_designs_logo.webp"
               alt="Absolon Designs Logo"
-              width={70}
-              height={70}
+              width={80}
+              height={45}
               priority
-              className="rounded-full invert transition-[filter] duration-300 dark:invert-0"
+              unoptimized
+              className="h-10 w-auto object-contain"
             />
             <span className="hidden text-lg font-bold sm:block">Absolon Designs</span>
           </Link>

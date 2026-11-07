@@ -5,8 +5,6 @@ import { createPortal } from "react-dom";
 import Link from "next/link";
 import { useTheme } from "./ThemeProvider";
 
-type BubblePos = { top: number };
-
 const links = [
   { href: "/#home", label: "Home" },
   { href: "/#about", label: "About" },
@@ -22,7 +20,7 @@ const links = [
 export default function MobileMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const [mounted, setMounted] = useState(false);
-  const [bubblePos, setBubblePos] = useState<BubblePos>({ top: 64 });
+  const [bubbleTop, setBubbleTop] = useState(64);
   const { theme } = useTheme();
   const toggleRef = useRef<HTMLButtonElement>(null);
 
@@ -39,7 +37,7 @@ export default function MobileMenu() {
       Math.max(rect.bottom + 10, 12),
       window.innerHeight - 280,
     );
-    setBubblePos({ top });
+    setBubbleTop(top);
   }, []);
 
   useEffect(() => {
@@ -49,7 +47,6 @@ export default function MobileMenu() {
   useEffect(() => {
     if (!isOpen) return;
     placeBubble();
-    // Fixed coords stay in the viewport while the page scrolls underneath
     const onResize = () => placeBubble();
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
@@ -98,7 +95,7 @@ export default function MobileMenu() {
           : "pointer-events-none invisible scale-95 opacity-0"
       }`}
       style={{
-        top: bubblePos.top,
+        top: bubbleTop,
         transition:
           "opacity 220ms ease, transform 280ms cubic-bezier(0.22, 1, 0.36, 1), visibility 220ms",
       }}

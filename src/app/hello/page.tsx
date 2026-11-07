@@ -66,12 +66,12 @@ export default function HelloPage() {
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-4">
             <Image
-              src="/absolon_designs_logo_blk_edit.gif"
+              src="/absolon_designs_logo.webp"
               alt="Absolon Designs Logo"
-              width={40}
+              width={72}
               height={40}
               unoptimized
-              className="rounded-full invert dark:invert-0 transition-[filter] duration-300 ease-in-out"
+              className="h-8 w-auto object-contain"
             />
             <span className="text-lg font-bold">Absolon Designs</span>
           </Link>

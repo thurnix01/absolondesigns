@@ -15,11 +15,12 @@ export default function LegalPage({ title, children }: LegalPageProps) {
           <Link href="/" className="flex items-center gap-4">
             <div className="h-10 relative">
               <Image
-                src="/absolon_designs_logo_blk_edit.gif"
+                src="/absolon_designs_logo.webp"
                 alt="Absolon Designs Logo"
-                width={70}
-                height={70}
-                className="rounded-full invert dark:invert-0 transition-[filter] duration-300 ease-in-out"
+                width={80}
+                height={45}
+                unoptimized
+                className="h-10 w-auto object-contain"
               />
             </div>
             <span className="text-lg font-bold hidden sm:block">
