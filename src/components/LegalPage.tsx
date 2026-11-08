@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import { SHOW_SITE_LOGO } from "@/config/mediaDebug";
 
 type LegalPageProps = {
   title: string;
@@ -13,17 +14,19 @@ export default function LegalPage({ title, children }: LegalPageProps) {
       <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--header-bg)] border-b border-[var(--card-border)]">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-4">
-            <div className="h-10 relative">
-              <Image
-                src="/absolon_designs_logo.webp"
-                alt="Absolon Designs Logo"
-                width={80}
-                height={45}
-                unoptimized
-                className="h-10 w-auto object-contain"
-              />
-            </div>
-            <span className="text-lg font-bold hidden sm:block">
+            {SHOW_SITE_LOGO ? (
+              <div className="h-10 relative">
+                <Image
+                  src="/absolon_designs_logo.webp"
+                  alt="Absolon Designs Logo"
+                  width={80}
+                  height={45}
+                  unoptimized
+                  className="h-10 w-auto object-contain"
+                />
+              </div>
+            ) : null}
+            <span className={`text-lg font-bold ${SHOW_SITE_LOGO ? "hidden sm:block" : ""}`}>
               Absolon Designs
             </span>
           </Link>

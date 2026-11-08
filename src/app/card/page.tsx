@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import ThemeToggle from "@/components/ThemeToggle";
 import MobileMenu from "@/components/MobileMenu";
+import { SHOW_SITE_LOGO } from "@/config/mediaDebug";
 import "./card.css";
 
 export const metadata: Metadata = {
@@ -47,15 +48,19 @@ export default function QrCardPage() {
       <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--header-bg)] border-b border-[var(--card-border)]">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-4">
-            <Image
-              src="/absolon_designs_logo.webp"
-              alt="Absolon Designs Logo"
-              width={80}
-              height={45}
-              unoptimized
-              className="h-10 w-auto object-contain"
-            />
-            <span className="text-lg font-bold hidden sm:block">Absolon Designs</span>
+            {SHOW_SITE_LOGO ? (
+              <Image
+                src="/absolon_designs_logo.webp"
+                alt="Absolon Designs Logo"
+                width={80}
+                height={45}
+                unoptimized
+                className="h-10 w-auto object-contain"
+              />
+            ) : null}
+            <span className={`text-lg font-bold ${SHOW_SITE_LOGO ? "hidden sm:block" : ""}`}>
+              Absolon Designs
+            </span>
           </Link>
 
           <nav className="hidden md:flex gap-6">

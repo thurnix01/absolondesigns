@@ -6,6 +6,7 @@ import MobileMenu from "../components/MobileMenu";
 import AnimatedSection from "../components/AnimatedSection";
 import ParallaxHero from "../components/ParallaxHero";
 import ProjectGallery from "../components/ProjectGallery";
+import { SHOW_SITE_LOGO } from "../config/mediaDebug";
 
 export const metadata: Metadata = {
   title: "Absolon Designs - Graphic Designer & Front-End Developer",
@@ -45,18 +46,22 @@ export default function Home() {
       <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--header-bg)] border-b border-[var(--card-border)]">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/#home" className="flex items-center gap-4">
-            <div className="h-10 relative">
-              <Image
-                src="/absolon_designs_logo.webp"
-                alt="Absolon Designs Logo"
-                width={80}
-                height={45}
-                priority
-                unoptimized
-                className="h-10 w-auto object-contain"
-              />
-            </div>
-            <span className="text-lg font-bold hidden sm:block">Absolon Designs</span>
+            {SHOW_SITE_LOGO ? (
+              <div className="h-10 relative">
+                <Image
+                  src="/absolon_designs_logo.webp"
+                  alt="Absolon Designs Logo"
+                  width={80}
+                  height={45}
+                  priority
+                  unoptimized
+                  className="h-10 w-auto object-contain"
+                />
+              </div>
+            ) : null}
+            <span className={`text-lg font-bold ${SHOW_SITE_LOGO ? "hidden sm:block" : ""}`}>
+              Absolon Designs
+            </span>
           </Link>
           
           <nav className="hidden md:flex gap-6">

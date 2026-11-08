@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
+import { SHOW_PROFILE_PHOTO } from "@/config/mediaDebug";
 
 export default function ParallaxHero() {
   const rootRef = useRef<HTMLElement>(null);
@@ -52,18 +53,20 @@ export default function ParallaxHero() {
 
       <div className="container relative mx-auto px-4 py-10 md:py-14">
         <div className="parallax-copy mx-auto flex max-w-5xl flex-col items-center gap-10 md:flex-row md:items-center">
-          <div className="parallax-portrait relative h-64 w-64 shrink-0 overflow-hidden rounded-full border-4 border-[var(--card-border)] shadow-lg sm:h-72 sm:w-72 md:h-80 md:w-80 lg:h-96 lg:w-96">
-            <Image
-              src="/profile-display.webp"
-              alt="Terence Absolon"
-              fill
-              unoptimized
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 640px) 16rem, (max-width: 768px) 18rem, (max-width: 1024px) 20rem, 24rem"
-              className="object-cover"
-            />
-          </div>
+          {SHOW_PROFILE_PHOTO ? (
+            <div className="parallax-portrait relative h-64 w-64 shrink-0 overflow-hidden rounded-full border-4 border-[var(--card-border)] shadow-lg sm:h-72 sm:w-72 md:h-80 md:w-80 lg:h-96 lg:w-96">
+              <Image
+                src="/profile-display.webp"
+                alt="Terence Absolon"
+                fill
+                unoptimized
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 640px) 16rem, (max-width: 768px) 18rem, (max-width: 1024px) 20rem, 24rem"
+                className="object-cover"
+              />
+            </div>
+          ) : null}
           <div className="text-center md:text-left">
             <p className="mb-3 text-sm font-semibold uppercase tracking-[0.22em] text-[var(--primary)]">
               Absolon Designs · Victoria, BC

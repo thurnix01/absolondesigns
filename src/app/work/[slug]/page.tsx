@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import PhotoGrid from "@/components/PhotoGrid";
 import ThemeToggle from "@/components/ThemeToggle";
+import { SHOW_SITE_LOGO } from "@/config/mediaDebug";
 import extras from "@/data/behance-extras.json";
 import { categoryLabels, getProject, projects } from "@/data/projects";
 
@@ -60,16 +61,20 @@ export default async function WorkPage({ params }: PageProps) {
       <header className="sticky top-0 z-50 border-b border-[var(--card-border)] bg-[var(--header-bg)] backdrop-blur-md">
         <div className="container mx-auto flex items-center justify-between px-4 py-4">
           <Link href="/#home" className="flex items-center gap-4">
-            <Image
-              src="/absolon_designs_logo.webp"
-              alt="Absolon Designs Logo"
-              width={80}
-              height={45}
-              priority
-              unoptimized
-              className="h-10 w-auto object-contain"
-            />
-            <span className="hidden text-lg font-bold sm:block">Absolon Designs</span>
+            {SHOW_SITE_LOGO ? (
+              <Image
+                src="/absolon_designs_logo.webp"
+                alt="Absolon Designs Logo"
+                width={80}
+                height={45}
+                priority
+                unoptimized
+                className="h-10 w-auto object-contain"
+              />
+            ) : null}
+            <span className={`text-lg font-bold ${SHOW_SITE_LOGO ? "hidden sm:block" : ""}`}>
+              Absolon Designs
+            </span>
           </Link>
           <div className="flex items-center gap-4 text-sm">
             <Link href="/#projects" className="hover:text-[var(--primary)]">

@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import ThemeToggle from "@/components/ThemeToggle";
 import MobileMenu from "@/components/MobileMenu";
+import { SHOW_SITE_LOGO } from "@/config/mediaDebug";
 
 export const metadata: Metadata = {
   title: "Hello — Absolon Designs",
@@ -65,14 +66,16 @@ export default function HelloPage() {
       <header className="sticky top-0 z-50 backdrop-blur-md bg-[var(--header-bg)] border-b border-[var(--card-border)]">
         <div className="container mx-auto px-4 py-4 flex justify-between items-center">
           <Link href="/" className="flex items-center gap-4">
-            <Image
-              src="/absolon_designs_logo.webp"
-              alt="Absolon Designs Logo"
-              width={72}
-              height={40}
-              unoptimized
-              className="h-8 w-auto object-contain"
-            />
+            {SHOW_SITE_LOGO ? (
+              <Image
+                src="/absolon_designs_logo.webp"
+                alt="Absolon Designs Logo"
+                width={72}
+                height={40}
+                unoptimized
+                className="h-8 w-auto object-contain"
+              />
+            ) : null}
             <span className="text-lg font-bold">Absolon Designs</span>
           </Link>
           <div className="flex items-center gap-2">
