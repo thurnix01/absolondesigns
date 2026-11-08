@@ -80,17 +80,10 @@ body {
   overflow-x: clip;
 }
 
-.parallax-orb,
-.parallax-grid,
-.parallax-copy,
-.parallax-portrait {
-  will-change: transform;
-}
-
+/* Soft radial washes — no filter:blur (that stalled mobile first paint) */
 .parallax-orb {
   position: absolute;
   border-radius: 999px;
-  filter: blur(42px);
   pointer-events: none;
 }
 
@@ -99,8 +92,12 @@ body {
   height: 28rem;
   left: -8rem;
   top: 8%;
-  background: color-mix(in srgb, var(--primary) 42%, transparent);
-  transform: translate3d(calc(var(--mx) * 28px), calc(var(--scroll) * -90px + var(--my) * 18px), 0);
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--primary) 42%, transparent) 0%,
+    color-mix(in srgb, var(--primary) 18%, transparent) 45%,
+    transparent 70%
+  );
 }
 
 .parallax-orb-b {
@@ -108,8 +105,12 @@ body {
   height: 22rem;
   right: -6rem;
   bottom: 4%;
-  background: color-mix(in srgb, var(--accent) 48%, transparent);
-  transform: translate3d(calc(var(--mx) * -34px), calc(var(--scroll) * -150px + var(--my) * -14px), 0);
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--accent) 48%, transparent) 0%,
+    color-mix(in srgb, var(--accent) 20%, transparent) 45%,
+    transparent 70%
+  );
 }
 
 .parallax-grid {
@@ -120,18 +121,37 @@ body {
   mask-image: linear-gradient(to bottom, black, transparent 80%);
   opacity: 0.35;
   pointer-events: none;
-  transform: translateY(calc(var(--scroll) * 48px));
 }
 
-.parallax-copy {
-  transform: translateY(calc(var(--scroll) * -28px));
-}
+/* Desktop-only parallax motion (cheap transforms; skip on phones) */
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .parallax-orb,
+  .parallax-grid,
+  .parallax-copy,
+  .parallax-portrait {
+    will-change: transform;
+  }
 
-.parallax-portrait {
-  transform: translate3d(calc(var(--mx) * 12px), calc(var(--scroll) * -40px + var(--my) * 10px), 0);
-}
+  .parallax-orb-a {
+    transform: translate3d(calc(var(--mx) * 28px), calc(var(--scroll) * -90px + var(--my) * 18px), 0);
+  }
 
-@media (hover: hover) {
+  .parallax-orb-b {
+    transform: translate3d(calc(var(--mx) * -34px), calc(var(--scroll) * -150px + var(--my) * -14px), 0);
+  }
+
+  .parallax-grid {
+    transform: translateY(calc(var(--scroll) * 48px));
+  }
+
+  .parallax-copy {
+    transform: translateY(calc(var(--scroll) * -28px));
+  }
+
+  .parallax-portrait {
+    transform: translate3d(calc(var(--mx) * 12px), calc(var(--scroll) * -40px + var(--my) * 10px), 0);
+  }
+
   .parallax-portrait img {
     transition: filter 0.35s ease;
   }
@@ -144,7 +164,6 @@ body {
 .page-blob {
   position: absolute;
   border-radius: 999px;
-  filter: blur(72px);
   pointer-events: none;
   z-index: 0;
 }
@@ -154,7 +173,12 @@ body {
   height: 32rem;
   left: -12rem;
   top: 16%;
-  background: color-mix(in srgb, var(--primary) 42%, transparent);
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--primary) 42%, transparent) 0%,
+    color-mix(in srgb, var(--primary) 16%, transparent) 45%,
+    transparent 70%
+  );
 }
 
 .page-blob-about-right {
@@ -162,7 +186,12 @@ body {
   height: 28rem;
   right: -10rem;
   top: 24%;
-  background: color-mix(in srgb, var(--accent) 46%, transparent);
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--accent) 46%, transparent) 0%,
+    color-mix(in srgb, var(--accent) 18%, transparent) 45%,
+    transparent 70%
+  );
 }
 
 .page-blob-work-left {
@@ -170,7 +199,12 @@ body {
   height: 34rem;
   left: -14rem;
   top: 42%;
-  background: color-mix(in srgb, var(--accent) 36%, transparent);
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--accent) 36%, transparent) 0%,
+    color-mix(in srgb, var(--accent) 14%, transparent) 45%,
+    transparent 70%
+  );
 }
 
 .page-blob-work-mid {
@@ -178,7 +212,12 @@ body {
   height: 26rem;
   left: 36%;
   top: 56%;
-  background: color-mix(in srgb, var(--primary) 28%, transparent);
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--primary) 28%, transparent) 0%,
+    color-mix(in srgb, var(--primary) 12%, transparent) 45%,
+    transparent 70%
+  );
 }
 
 .page-blob-work-right {
@@ -186,7 +225,12 @@ body {
   height: 32rem;
   right: -12rem;
   top: 68%;
-  background: color-mix(in srgb, var(--accent) 40%, transparent);
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--accent) 40%, transparent) 0%,
+    color-mix(in srgb, var(--accent) 16%, transparent) 45%,
+    transparent 70%
+  );
 }
 
 .page-blob-notes-left {
@@ -194,7 +238,12 @@ body {
   height: 28rem;
   left: -10rem;
   top: 82%;
-  background: color-mix(in srgb, var(--primary) 34%, transparent);
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--primary) 34%, transparent) 0%,
+    color-mix(in srgb, var(--primary) 14%, transparent) 45%,
+    transparent 70%
+  );
 }
 
 .page-blob-notes-right {
@@ -202,7 +251,12 @@ body {
   height: 24rem;
   right: -8rem;
   top: 90%;
-  background: color-mix(in srgb, var(--accent) 38%, transparent);
+  background: radial-gradient(
+    circle at center,
+    color-mix(in srgb, var(--accent) 38%, transparent) 0%,
+    color-mix(in srgb, var(--accent) 15%, transparent) 45%,
+    transparent 70%
+  );
 }
 
 @media (prefers-reduced-motion: reduce) {

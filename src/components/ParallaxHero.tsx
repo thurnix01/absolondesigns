@@ -11,8 +11,11 @@ export default function ParallaxHero() {
     const root = rootRef.current;
     if (!root) return;
     if (!SHOW_BLUR_FX) return;
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) return;
+
+    const motionOk = window.matchMedia(
+      "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)"
+    );
+    if (!motionOk.matches) return;
 
     let frame = 0;
     const update = () => {
