@@ -102,9 +102,9 @@ export default function Home() {
         <section id="about" className="py-8 md:py-10">
           <div className="container mx-auto px-4">
             <AnimatedSection>
-              <h2 className="text-3xl font-bold mb-8 text-center">About me</h2>
+              <h2 className="mb-8 text-center text-2xl font-bold md:text-3xl">About me</h2>
               <div className="max-w-3xl mx-auto bg-[var(--card-bg)] p-8 rounded-lg shadow-md border border-[var(--card-border)]">
-                <p className="text-lg leading-relaxed text-[var(--text-primary)]">
+                <p className="text-base leading-relaxed text-[var(--text-primary)] md:text-lg">
                   In my career and personal life, I&apos;m continuously on the lookout for new opportunities for development. Finding opportunities for creativity that allow me to grow as a designer in a stimulating, ever-changing setting is my top priority. I have extensive experience in web development, production design, and animation, and I am passionate about creating meaningful connections between people through a combination of strategy, practical knowledge, and my hands-on approach. When I consider my strengths in teamwork and communication, I am convinced that I can make a significant contribution in any setting where I am asked to do so.
                 </p>
               </div>
