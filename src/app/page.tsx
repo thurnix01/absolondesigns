@@ -6,7 +6,7 @@ import MobileMenu from "../components/MobileMenu";
 import AnimatedSection from "../components/AnimatedSection";
 import ParallaxHero from "../components/ParallaxHero";
 import ProjectGallery from "../components/ProjectGallery";
-import { SHOW_SITE_LOGO } from "../config/mediaDebug";
+import { SHOW_PORTFOLIO, SHOW_SITE_LOGO } from "../config/mediaDebug";
 
 export const metadata: Metadata = {
   title: "Absolon Designs - Graphic Designer & Front-End Developer",
@@ -106,7 +106,7 @@ export default function Home() {
           </div>
         </section>
 
-        <ProjectGallery />
+        {SHOW_PORTFOLIO ? <ProjectGallery /> : null}
 
         {/* Testimonial Section */}
         <section id="testimonial" className="py-12">
