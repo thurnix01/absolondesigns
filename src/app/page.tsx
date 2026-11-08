@@ -6,7 +6,11 @@ import MobileMenu from "../components/MobileMenu";
 import AnimatedSection from "../components/AnimatedSection";
 import ParallaxHero from "../components/ParallaxHero";
 import ProjectGallery from "../components/ProjectGallery";
-import { SHOW_PORTFOLIO, SHOW_SITE_LOGO } from "../config/mediaDebug";
+import {
+  SHOW_BLUR_FX,
+  SHOW_PORTFOLIO,
+  SHOW_SITE_LOGO,
+} from "../config/mediaDebug";
 
 export const metadata: Metadata = {
   title: "Absolon Designs - Graphic Designer & Front-End Developer",
@@ -80,15 +84,17 @@ export default function Home() {
       </header>
 
       <main className="relative overflow-x-clip">
-        <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
-          <div className="page-blob page-blob-about-left" />
-          <div className="page-blob page-blob-about-right" />
-          <div className="page-blob page-blob-work-left" />
-          <div className="page-blob page-blob-work-mid" />
-          <div className="page-blob page-blob-work-right" />
-          <div className="page-blob page-blob-notes-left" />
-          <div className="page-blob page-blob-notes-right" />
-        </div>
+        {SHOW_BLUR_FX ? (
+          <div className="pointer-events-none absolute inset-0 z-0" aria-hidden="true">
+            <div className="page-blob page-blob-about-left" />
+            <div className="page-blob page-blob-about-right" />
+            <div className="page-blob page-blob-work-left" />
+            <div className="page-blob page-blob-work-mid" />
+            <div className="page-blob page-blob-work-right" />
+            <div className="page-blob page-blob-notes-left" />
+            <div className="page-blob page-blob-notes-right" />
+          </div>
+        ) : null}
         <div className="relative z-10">
         <ParallaxHero />
 

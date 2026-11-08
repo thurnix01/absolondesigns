@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef } from "react";
-import { SHOW_PROFILE_PHOTO } from "@/config/mediaDebug";
+import { SHOW_BLUR_FX, SHOW_PROFILE_PHOTO } from "@/config/mediaDebug";
 
 export default function ParallaxHero() {
   const rootRef = useRef<HTMLElement>(null);
@@ -10,6 +10,7 @@ export default function ParallaxHero() {
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
+    if (!SHOW_BLUR_FX) return;
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (reduce) return;
 
@@ -47,9 +48,13 @@ export default function ParallaxHero() {
       ref={rootRef}
       className="parallax-hero relative"
     >
-      <div className="parallax-orb parallax-orb-a" aria-hidden="true" />
-      <div className="parallax-orb parallax-orb-b" aria-hidden="true" />
-      <div className="parallax-grid" aria-hidden="true" />
+      {SHOW_BLUR_FX ? (
+        <>
+          <div className="parallax-orb parallax-orb-a" aria-hidden="true" />
+          <div className="parallax-orb parallax-orb-b" aria-hidden="true" />
+          <div className="parallax-grid" aria-hidden="true" />
+        </>
+      ) : null}
 
       <div className="container relative mx-auto px-4 py-10 md:py-14">
         <div className="parallax-copy mx-auto flex max-w-5xl flex-col items-center gap-10 md:flex-row md:items-center">
