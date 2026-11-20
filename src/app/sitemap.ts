@@ -1,7 +1,6 @@
 import type { MetadataRoute } from "next";
 import { projects } from "@/data/projects";
-
-const siteUrl = "https://absolondesigns.com";
+import { SITE_URL } from "@/config/site";
 
 export const dynamic = "force-static";
 
@@ -10,37 +9,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     {
-      url: `${siteUrl}/`,
+      url: `${SITE_URL}/`,
       lastModified,
-      changeFrequency: "monthly",
+      changeFrequency: "weekly",
       priority: 1,
     },
     {
-      url: `${siteUrl}/hello/`,
+      url: `${SITE_URL}/hello/`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
-      url: `${siteUrl}/card/`,
+      url: `${SITE_URL}/card/`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${siteUrl}/privacy/`,
+      url: `${SITE_URL}/privacy/`,
       lastModified,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     {
-      url: `${siteUrl}/terms/`,
+      url: `${SITE_URL}/terms/`,
       lastModified,
       changeFrequency: "yearly",
       priority: 0.3,
     },
     ...projects.map((project) => ({
-      url: `${siteUrl}/work/${project.slug}/`,
+      url: `${SITE_URL}/work/${project.slug}/`,
       lastModified,
       changeFrequency: "monthly" as const,
       priority: 0.7,

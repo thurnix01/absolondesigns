@@ -11,35 +11,37 @@ import {
   SHOW_PORTFOLIO,
   SHOW_SITE_LOGO,
 } from "../config/mediaDebug";
+import { OG_IMAGE, SITE_DESCRIPTION, SITE_TITLE, SITE_URL } from "../config/site";
 
 export const metadata: Metadata = {
-  title: "Absolon Designs - Graphic Designer & Front-End Developer",
-  description:
-    "Personal portfolio showcasing web development and design work by Terence Absolon in Victoria, BC.",
+  title: SITE_TITLE,
+  description: SITE_DESCRIPTION,
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Absolon Designs - Graphic Designer & Front-End Developer",
-    description:
-      "Personal portfolio showcasing web development and design work by Terence Absolon in Victoria, BC.",
-    url: "https://absolondesigns.com/",
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    url: `${SITE_URL}/`,
     type: "website",
+    siteName: "Absolon Designs",
+    locale: "en_CA",
     images: [
       {
-        url: "/og-image.jpg",
-        width: 2400,
-        height: 1260,
-        alt: "Terence Absolon — Digital Marketing Specialist | Absolon Designs",
+        url: OG_IMAGE.url,
+        secureUrl: OG_IMAGE.url,
+        width: OG_IMAGE.width,
+        height: OG_IMAGE.height,
+        alt: OG_IMAGE.alt,
+        type: OG_IMAGE.type,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Absolon Designs - Graphic Designer & Front-End Developer",
-    description:
-      "Personal portfolio showcasing web development and design work by Terence Absolon in Victoria, BC.",
-    images: ["/og-image.jpg"],
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+    images: [OG_IMAGE.url],
   },
 };
 
